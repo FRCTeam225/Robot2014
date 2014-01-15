@@ -30,14 +30,14 @@ public class Drivetrain extends Subsystem {
         left[0] = new Talon(PortMap.LEFT_DRIVE1);
         left[1] = new Talon(PortMap.LEFT_DRIVE2);
         left[2] = new Talon(PortMap.LEFT_DRIVE3);
-        
+
         right[0] = new Talon(PortMap.RIGHT_DRIVE1);
         right[1] = new Talon(PortMap.RIGHT_DRIVE2);
         right[2] = new Talon(PortMap.RIGHT_DRIVE3);
         
         gyro = new Gyro(PortMap.GYRO);
         leftEncoder = new Encoder(PortMap.LEFT_ENCODERA, PortMap.LEFT_ENCODERB);
-        rightEncoder = new Encoder(PortMap.RIGHT_ENCODERA, PortMap.RIGHT_ENCODERB);
+        rightEncoder = new Encoder(PortMap.RIGHT_ENCODERA, PortMap.RIGHT_ENCODERB, true);
     }
     
     public void resetAngle()
