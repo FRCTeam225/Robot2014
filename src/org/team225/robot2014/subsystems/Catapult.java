@@ -4,6 +4,7 @@
  */
 package org.team225.robot2014.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Solenoid;
 import org.team225.robot2014.PortMap;
@@ -19,9 +20,7 @@ public class Catapult extends Subsystem {
     Solenoid shift = new Solenoid(PortMap.SHIFT_CATAPULT_ANGLE);
     Solenoid release = new Solenoid(PortMap.ARM_RELEASE);
     
-    public boolean pressurized = false;
-    public boolean lockedIn = false;
-    public int position = 1;
+    DigitalInput armDownLimit = new DigitalInput(PortMap.ARM_DOWN_LIMIT);
 
     protected void initDefaultCommand() {
     }
@@ -37,6 +36,10 @@ public class Catapult extends Subsystem {
     
     public void setLock(boolean on){
         release.set(on);
+    }
+    
+    public boolean armIsDown(){
+        return armDownLimit.get();
     }
     
     

@@ -23,9 +23,11 @@ public class PortMap {
     
     public static final int GYRO = 1; // Analog
     
-    public static final int LEFT_CATAPULT_PISTON = 1;
-    public static final int RIGHT_CATAPULT_PISTON = 2;
-    public static final int SHIFT_CATAPULT_ANGLE = 3;
-    public static final int ARM_RELEASE = 4;
+    public static final int LEFT_CATAPULT_PISTON = 1;//Solenoid
+    public static final int RIGHT_CATAPULT_PISTON = 2;//Solinoid
+    public static final int SHIFT_CATAPULT_ANGLE = 3;//Solenoid
+    public static final int ARM_RELEASE = 4;//Solenoid
+    
+    public static final int ARM_DOWN_LIMIT = 5;//Digital
     
 }
