@@ -1,6 +1,7 @@
 package org.team225.robot2014;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import org.team225.robot2014.commands.AutonomousWrapper;
@@ -12,9 +13,9 @@ public class Robot2014 extends IterativeRobot {
     
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {
-        new AutonomousWrapper(OneBallHotGoal.class, "Wait for hot goal, drive forward and shoot one ball", true),
-        new AutonomousWrapper(OneBall.class, "Drive forward and shoot one ball", false),
-        new AutonomousWrapper(TwoBall.class, "Shoot preload and other ball behind robot", false),
+        new AutonomousWrapper(OneBallHotGoal.class, "One Ball Hot Goal", true),
+        new AutonomousWrapper(OneBall.class, "One Ball Any Goal", false),
+        new AutonomousWrapper(TwoBall.class, "Two Ball Any Goal", false),
     };
     
     Command autonomousCommand = null;
@@ -59,30 +60,27 @@ public class Robot2014 extends IterativeRobot {
         
     }
     
-    boolean autoSelectorButtonPress = false;
     public void disabledPeriodic()
     {
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
-        if ( OI.driver.getRawButton(1) && !autoSelectorButtonPress && selectedAutonomous > 0 )
+        if ( OI.driver.getRawButton(1) && selectedAutonomous < autonomousOptions.length-1 )
         {
             dsLCD.clear();
-            autoSelectorButtonPress = true;
             selectedAutonomous++;
+            Timer.delay(0.5);
         }
-        if ( OI.driver.getRawButton(2) && !autoSelectorButtonPress && selectedAutonomous < autonomousOptions.length-1 )
+        else if ( OI.driver.getRawButton(2) && selectedAutonomous > 0  )
         {
             dsLCD.clear();
-            autoSelectorButtonPress = true;
             selectedAutonomous--;
+            Timer.delay(0.5);
         }
-        else
-            autoSelectorButtonPress = false;
         
         AutonomousWrapper auto = autonomousOptions[selectedAutonomous];
 
 
-        dsLCD.println(DriverStationLCD.Line.kUser1, 0, auto.getName());
-        dsLCD.println(DriverStationLCD.Line.kUser2, 0, auto.getDescription());
+        dsLCD.println(DriverStationLCD.Line.kUser1, 1, "--Selected Autonomous--");
+        dsLCD.println(DriverStationLCD.Line.kUser2, 1, auto.getDescription());
         dsLCD.updateLCD();
             
     }

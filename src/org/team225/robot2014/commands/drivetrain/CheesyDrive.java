@@ -15,7 +15,7 @@ public class CheesyDrive extends CommandBase {
     
     double turn_gain = 1;
     double skim_gain = 0.4;
-    double turn_velocity_multiplier_gain = 1;
+    double turn_velocity_multiplier_gain = 1.3;
     
     public CheesyDrive()
     {
@@ -28,10 +28,10 @@ public class CheesyDrive extends CommandBase {
     protected void execute() {
         double throttle = OI.driver.getRawAxis(2);
         double turnInput = OI.driver.getRawAxis(3)*turn_gain;
-
+         
         if ( Math.abs(turnInput) < 0.02 )
             turnInput = 0;
-
+        
         double turn = turnInput*Math.abs(turn_velocity_multiplier_gain*OI.driver.getRawAxis(2));
 
         if ( Math.abs(throttle) < 0.05 )

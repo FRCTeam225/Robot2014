@@ -31,11 +31,6 @@ public class AutonomousWrapper {
         this.caresAboutHotGoal = caresAboutHotGoal;
     }
     
-    public String getName()
-    {
-        return autonomous.getName();
-    }
-    
     public String getDescription()
     {
         return description;
