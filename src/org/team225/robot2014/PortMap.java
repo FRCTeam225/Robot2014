@@ -22,4 +22,10 @@ public class PortMap {
     public static final int RIGHT_ENCODERB = 4; // Digital
     
     public static final int GYRO = 1; // Analog
+    
+    public static final int LEFT_LAUNCHER = 1;
+    public static final int RIGHT_LAUNCHER = 2;
+    public static final int SHIFT_ANGLE = 3;
+    public static final int RELEASE = 4;
+    
 }

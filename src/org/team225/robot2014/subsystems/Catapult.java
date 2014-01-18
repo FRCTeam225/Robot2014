@@ -25,4 +25,6 @@ public class Catapult extends Subsystem {
     protected void initDefaultCommand() {
     }
     
+    
+    
 }
