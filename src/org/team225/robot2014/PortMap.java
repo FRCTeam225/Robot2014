@@ -30,4 +30,7 @@ public class PortMap {
     
     public static final int ARM_DOWN_LIMIT = 5;//Digital
     
+    public static final int CATCHER_LEFT = 5;//Solenoid
+    public static final int CATCHER_RIGHT = 6;//Solenoid
+    
 }
