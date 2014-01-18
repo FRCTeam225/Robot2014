@@ -12,10 +12,10 @@ import org.team225.robot2014.commands.catapult.Reload;
 
 /**
  *
- * @author Andrew
+ * @author KageRa
  */
 public class Catapult extends Subsystem {
-    
+        
     Solenoid left = new Solenoid(PortMap.LEFT_CATAPULT_PISTON);
     Solenoid right = new Solenoid(PortMap.RIGHT_CATAPULT_PISTON);
     Solenoid shift = new Solenoid(PortMap.SHIFT_CATAPULT_ANGLE);

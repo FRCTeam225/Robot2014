@@ -10,7 +10,7 @@ import org.team225.robot2014.CommandBase;
 
 /**
  *
- * @author KageRA
+ * @author KageRa
  */
 public class Pressurize extends CommandBase{
 

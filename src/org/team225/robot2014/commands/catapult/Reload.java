@@ -11,7 +11,7 @@ import org.team225.robot2014.CommandBase;
 
 /**
  *
- * @author KageRA
+ * @author KageRa
  */
 public class Reload extends CommandGroup{
     
