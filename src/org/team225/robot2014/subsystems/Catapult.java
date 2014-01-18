@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Solenoid;
 import org.team225.robot2014.PortMap;
+import org.team225.robot2014.commands.catapult.Reload;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Catapult extends Subsystem {
     DigitalInput armDownLimit = new DigitalInput(PortMap.ARM_DOWN_LIMIT);
 
     protected void initDefaultCommand() {
+        setDefaultCommand(new Reload());
     }
     
     public void setPressurized(boolean on){
