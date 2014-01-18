@@ -63,13 +63,13 @@ public class Robot2014 extends IterativeRobot {
     public void disabledPeriodic()
     {
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
-        if ( (OI.jsL.getRawButton(5) || OI.jsR.getRawButton(5)) && !autoSelectorButtonPress && selectedAutonomous > 0 )
+        if ( OI.driver.getRawButton(1) && !autoSelectorButtonPress && selectedAutonomous > 0 )
         {
             dsLCD.clear();
             autoSelectorButtonPress = true;
             selectedAutonomous++;
         }
-        if ( (OI.jsL.getRawButton(4) || OI.jsR.getRawButton(4)) && !autoSelectorButtonPress && selectedAutonomous < autonomousOptions.length-1 )
+        if ( OI.driver.getRawButton(2) && !autoSelectorButtonPress && selectedAutonomous < autonomousOptions.length-1 )
         {
             dsLCD.clear();
             autoSelectorButtonPress = true;

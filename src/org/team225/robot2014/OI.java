@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
  * @author Andrew
  */
 public class OI {
-    public static Joystick jsL = new Joystick(1);
-    public static Joystick jsR = new Joystick(2);
+    public static Joystick driver = new Joystick(1); // Driver gamepad
     
     
 }

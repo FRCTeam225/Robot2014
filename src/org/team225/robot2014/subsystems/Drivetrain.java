@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.PortMap;
-import org.team225.robot2014.commands.drivetrain.JoystickDrive;
+import org.team225.robot2014.commands.drivetrain.CheesyDrive;
 
 /**
  *
@@ -93,7 +93,7 @@ public class Drivetrain extends Subsystem {
     }
     
     protected void initDefaultCommand() {
-        setDefaultCommand(new JoystickDrive());
+        setDefaultCommand(new CheesyDrive());
     }
     
 }
