@@ -33,9 +33,9 @@ public abstract class CommandBase extends Command {
     public static void init()
     {
         drivetrain = new Drivetrain();
-        catapult = new Catapult();
-        intake = new Intake();
-        catcher = new Catcher();
+        //catapult = new Catapult();
+        //intake = new Intake();
+        //catcher = new Catcher();
         
         piComm = NetworkTable.getTable("techfire");
         setTableDefaults();

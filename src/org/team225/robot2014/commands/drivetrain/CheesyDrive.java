@@ -13,7 +13,7 @@ import org.team225.robot2014.OI;
  */
 public class CheesyDrive extends CommandBase {
     
-    double turn_gain = 1;
+    double turn_gain = 1.3;
     double skim_gain = 0.4;
     double turn_velocity_multiplier_gain = 1.3;
     
@@ -27,15 +27,22 @@ public class CheesyDrive extends CommandBase {
 
     protected void execute() {
         double throttle = OI.driver.getRawAxis(2);
-        double turnInput = OI.driver.getRawAxis(3)*turn_gain;
-         
+        double turnInput = OI.driver.getRawAxis(3);
+        
+        turnInput = Math.sin((Math.PI/2)*turnInput);
+        turnInput = Math.sin((Math.PI/2)*turnInput);
+        
         if ( Math.abs(turnInput) < 0.02 )
             turnInput = 0;
+        
+        if ( Math.abs(throttle) > 0.05 )
+            turnInput *= turn_gain;
         
         double turn = turnInput*Math.abs(turn_velocity_multiplier_gain*OI.driver.getRawAxis(2));
 
         if ( Math.abs(throttle) < 0.05 )
             turn = turnInput;
+        
 
         double left_orig = throttle-turn;
         double right_orig = throttle+turn;

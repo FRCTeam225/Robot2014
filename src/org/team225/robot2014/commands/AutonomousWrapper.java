@@ -40,7 +40,6 @@ public class AutonomousWrapper {
     {   
         if ( caresAboutHotGoal )
         {
-            
             Timer.delay(0.5);
             AutonomousWrapper.startingGoalIsHot = CommandBase.piComm.getBoolean("hasTarget");
         }

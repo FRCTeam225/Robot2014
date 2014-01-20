@@ -24,7 +24,6 @@ public class Catapult extends Subsystem {
     DigitalInput armDownLimit = new DigitalInput(PortMap.ARM_DOWN_LIMIT);
 
     protected void initDefaultCommand() {
-        setDefaultCommand(new Reload());
     }
     
     public void setPressurized(boolean on){
