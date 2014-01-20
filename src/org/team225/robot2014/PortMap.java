@@ -33,4 +33,6 @@ public class PortMap {
     public static final int CATCHER_LEFT = 5;//Solenoid
     public static final int CATCHER_RIGHT = 6;//Solenoid
     
+    public static final int COLLECTOR_ROLLER = 7;
+    
 }
