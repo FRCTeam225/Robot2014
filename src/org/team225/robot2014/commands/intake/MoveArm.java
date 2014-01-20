@@ -18,13 +18,14 @@ public class MoveArm extends CommandBase {
     }
 
     protected void initialize() {
+        intake.setAngle(position);
     }
 
     protected void execute() {
     }
 
     protected boolean isFinished() {
-        return false;
+        return intake.isAtTarget();
     }
 
     protected void end() {
