@@ -19,6 +19,7 @@ public class SetRollers extends CommandBase {
     }
 
     protected void initialize() {
+        intake.setRoller(state);
     }
 
     protected void execute() {
