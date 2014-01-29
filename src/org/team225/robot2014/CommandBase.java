@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.team225.robot2014.subsystems.Catapult;
 import org.team225.robot2014.subsystems.Catcher;
+import org.team225.robot2014.subsystems.Compressor;
 import org.team225.robot2014.subsystems.Drivetrain;
 import org.team225.robot2014.subsystems.Intake;
 
@@ -25,6 +26,7 @@ public abstract class CommandBase extends Command {
     public static Catapult catapult; 
     public static Intake intake;
     public static Catcher catcher;
+    public static Compressor compressor;
     
     public static NetworkTable piComm;
     
@@ -33,8 +35,9 @@ public abstract class CommandBase extends Command {
     public static void init()
     {
         drivetrain = new Drivetrain();
+        compressor = new Compressor();
         //catapult = new Catapult();
-        //intake = new Intake();
+        intake = new Intake();
         //catcher = new Catcher();
         
         piComm = NetworkTable.getTable("techfire");

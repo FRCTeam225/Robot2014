@@ -4,6 +4,7 @@
  */
 package org.team225.robot2014.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Talon;
@@ -25,6 +26,8 @@ public class Drivetrain extends Subsystem {
     
     Gyro gyro;
     
+    DoubleSolenoid shifter;
+    
     public Drivetrain()
     {
         left[0] = new Talon(PortMap.LEFT_DRIVE1);
@@ -38,6 +41,8 @@ public class Drivetrain extends Subsystem {
         gyro = new Gyro(PortMap.GYRO);
         leftEncoder = new Encoder(PortMap.LEFT_ENCODERA, PortMap.LEFT_ENCODERB);
         rightEncoder = new Encoder(PortMap.RIGHT_ENCODERA, PortMap.RIGHT_ENCODERB, true);
+        
+        shifter = new DoubleSolenoid(PortMap.SHIFT_PISTON_A, PortMap.SHIFT_PISTON_B);
     }
     
     public void resetAngle()
@@ -90,6 +95,14 @@ public class Drivetrain extends Subsystem {
         {
             right[i].set(-speed);
         }
+    }
+    
+    public void shift(boolean highGear)
+    {
+        if ( highGear )
+            shifter.set(DoubleSolenoid.Value.kForward);
+        else
+            shifter.set(DoubleSolenoid.Value.kReverse);
     }
     
     protected void initDefaultCommand() {
