@@ -53,6 +53,7 @@ public class AutonomousWrapper {
             command = new OneBall();
         }
         command.start();
+        System.out.println(command);
         return command;
     }
 }

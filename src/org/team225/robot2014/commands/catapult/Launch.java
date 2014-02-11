@@ -1,39 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.team225.robot2014.commands.catapult;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import org.team225.robot2014.CommandBase;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
- * @author KageRa
+ * @author Andrew
  */
-public class Launch extends CommandBase{
-
-    public Launch(){
-        requires(catapult);
+public class Launch extends CommandGroup {
+    public Launch(boolean latch, boolean bothCylinders)
+    {
+        setInterruptible(false);
+        if ( latch )
+            addSequential(new LockCatapult());
+        addSequential(new ReleaseCatapult(bothCylinders));
+        addSequential(new ResetCatapult());
     }
-    
-    protected void initialize() {
-        setTimeout(0.5);
-    }
-
-    protected void execute() {
-        catapult.setLock(false);
-    }
-
-    protected boolean isFinished() {
-        return isTimedOut();
-
-    }
-
-    protected void end() {
-        catapult.setPressurized(false);
-    }
-    
 }

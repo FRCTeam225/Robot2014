@@ -29,18 +29,25 @@ public class PortMap {
     
     public static final int GYRO = 1; // Analog
     
-    public static final int LEFT_CATAPULT_PISTON = 1;//Solenoid
-    public static final int RIGHT_CATAPULT_PISTON = 2;//Solinoid
-    public static final int SHIFT_CATAPULT_ANGLE = 3;//Solenoid
-    public static final int ARM_RELEASE = 4;//Solenoid
+    public static final int LEFT_CATAPULT_PISTON_A = 1;//Solenoid
+    public static final int LEFT_CATAPULT_PISTON_B = 2;//Solenoid
+    
+    public static final int RIGHT_CATAPULT_PISTON_A = 3;//Solinoid
+    public static final int RIGHT_CATAPULT_PISTON_B = 4;//Solinoid
+    
+    public static final int CATAPULT_LATCH_A = 5;//Solinoid
+    public static final int CATAPULT_LATCH_B = 6;//Solinoid
+
     
     public static final int ARM_DOWN_LIMIT = 5;//Digital
     
     public static final int CATCHER_LEFT = 5;//Solenoid
     public static final int CATCHER_RIGHT = 6;//Solenoid
     
-    public static final int COLLECTOR_ROLLER = 7;
-    public static final int COLLECTOR_ANGLE = 8;
-    public static final int COLLECTOR_ANGLE_POT = 9;
+    public static final int COLLECTOR_ROLLER = 9;
+    public static final int COLLECTOR_ANGLE_A = 8;
+    public static final int COLLECTOR_ANGLE_B = 7;
+    
+    public static final int COLLECTOR_ANGLE_POT = 2;
     
 }

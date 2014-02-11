@@ -31,6 +31,6 @@ public class DriveDistance extends SimplePIDCommand {
     }
 
     protected void setOutput(double value) {
-        drivetrain.setMotorSpeeds(value, value);
+        drivetrain.setMotorSpeeds(-value, -value);
     }
 }

@@ -6,22 +6,25 @@
 
 package org.team225.robot2014.commands.catapult;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.CommandBase;
 
 /**
  *
  * @author KageRa
  */
-public class Depressurize extends CommandBase{
+public class ReleaseCatapult extends CommandBase{
 
-    public Depressurize(){
+    boolean bothCylinders;
+    public ReleaseCatapult(boolean bothCylinders){
         requires(catapult);
+        this.bothCylinders = bothCylinders;
+        setTimeout(1.0);
+        setInterruptible(false);
     }
     
     protected void initialize() {
-        if(!catapult.armIsDown()){
-            catapult.setPressurized(false);
-        }
+        catapult.setPressurized(true, bothCylinders);
     }
 
     protected void execute() {
@@ -29,10 +32,12 @@ public class Depressurize extends CommandBase{
     }
 
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     protected void end() {
+        catapult.setLock(false);
+        catapult.setPressurized(true);
     }
     
 }

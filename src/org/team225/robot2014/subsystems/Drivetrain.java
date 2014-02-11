@@ -42,6 +42,9 @@ public class Drivetrain extends Subsystem {
         leftEncoder = new Encoder(PortMap.LEFT_ENCODERA, PortMap.LEFT_ENCODERB);
         rightEncoder = new Encoder(PortMap.RIGHT_ENCODERA, PortMap.RIGHT_ENCODERB, true);
         
+        leftEncoder.start();
+        rightEncoder.start();
+        
         shifter = new DoubleSolenoid(PortMap.SHIFT_PISTON_A, PortMap.SHIFT_PISTON_B);
     }
     
@@ -75,6 +78,12 @@ public class Drivetrain extends Subsystem {
         return (getLeftDistance()+getRightDistance())/2;
     }
     
+    public void resetDistance()
+    {
+        rightEncoder.reset();
+        leftEncoder.reset();
+    }
+    
     public void setMotorSpeeds(double left, double right)
     {
         setLeftSpeed(left);
@@ -97,9 +106,9 @@ public class Drivetrain extends Subsystem {
         }
     }
     
-    public void shift(boolean highGear)
+    public void shift(boolean lowGear)
     {
-        if ( highGear )
+        if ( lowGear )
             shifter.set(DoubleSolenoid.Value.kForward);
         else
             shifter.set(DoubleSolenoid.Value.kReverse);

@@ -15,7 +15,7 @@ public class CheesyDrive extends CommandBase {
     
     double turn_gain = 1;
     double skim_gain = 0.4;
-    double turn_velocity_multiplier_gain = 1.3;
+    double turn_velocity_multiplier_gain = 1.0;
     
     public CheesyDrive()
     {
@@ -23,6 +23,7 @@ public class CheesyDrive extends CommandBase {
     }
     
     protected void initialize() {
+        drivetrain.shift(false);
     }
 
     protected void execute() {
@@ -30,18 +31,21 @@ public class CheesyDrive extends CommandBase {
         double turnInput = OI.driver.getRawAxis(3);
         
         turnInput = Math.sin((Math.PI/2)*turnInput);
-        turnInput = Math.sin((Math.PI/2)*turnInput);
+        //turnInput = Math.sin((Math.PI/2)*turnInput);
+        //turnInput = Math.sin((Math.PI/2)*turnInput);
         
-        if ( Math.abs(turnInput) < 0.02 )
+        if ( Math.abs(turnInput) < 0.07 )
             turnInput = 0;
         
-        if ( Math.abs(throttle) > 0.05 )
-            turnInput *= turn_gain;
+        turnInput *= turn_gain;
         
         double turn = turnInput*Math.abs(turn_velocity_multiplier_gain*OI.driver.getRawAxis(2));
 
-        if ( Math.abs(throttle) < 0.05 )
+        if ( Math.abs(throttle) < 0.07 )
+        {
+            throttle = 0;
             turn = turnInput;
+        }
         
 
         double left_orig = throttle-turn;
@@ -49,13 +53,13 @@ public class CheesyDrive extends CommandBase {
 
         double left = left_orig+ skim(right_orig);
         double right = right_orig+skim(left_orig);
-        System.out.println(left-right);
+
         drivetrain.setMotorSpeeds(left, right);
-        
+        System.out.println(left+", "+right);
         if ( OI.driver.getRawButton(5) )
-            drivetrain.shift(false);
-        else if ( OI.driver.getRawButton(6) )
             drivetrain.shift(true);
+        else if ( OI.driver.getRawButton(6) )
+            drivetrain.shift(false);
         
     }
 

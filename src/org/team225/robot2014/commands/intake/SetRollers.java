@@ -12,14 +12,22 @@ import org.team225.robot2014.CommandBase;
  */
 public class SetRollers extends CommandBase {
     boolean state = false;
+    boolean reverse = false;
     
     public SetRollers(boolean state)
     {
+        this(state, false);
+    }
+    
+    public SetRollers(boolean state, boolean reverse)
+    {
+        requires(intake);
         this.state = state;
+        this.reverse = reverse;
     }
 
     protected void initialize() {
-        intake.setRoller(state);
+        intake.setRoller(state, reverse);
     }
 
     protected void execute() {

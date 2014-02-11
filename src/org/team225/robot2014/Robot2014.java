@@ -26,6 +26,8 @@ public class Robot2014 extends IterativeRobot {
      */
     public void robotInit() {
         CommandBase.init();
+        OI.init();
+        System.out.println("ROBOT READY!");
     }
 
     public void autonomousInit()
@@ -50,7 +52,10 @@ public class Robot2014 extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        //CommandBase.catapult.debug();
         Scheduler.getInstance().run();
+        System.out.println(CommandBase.intake.getArmPot());
+      //  System.out.println(CommandBase.drivetrain.getAngle());
     }
     
     /**
@@ -58,6 +63,12 @@ public class Robot2014 extends IterativeRobot {
      */
     public void testPeriodic() {
         
+    }
+    
+    public void disabledInit()
+    {
+        CommandBase.drivetrain.resetDistance();
+        CommandBase.drivetrain.resetAngle();
     }
     
     public void disabledPeriodic()

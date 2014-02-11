@@ -36,7 +36,7 @@ public abstract class CommandBase extends Command {
     {
         drivetrain = new Drivetrain();
         compressor = new Compressor();
-        //catapult = new Catapult();
+        catapult = new Catapult();
         intake = new Intake();
         //catcher = new Catcher();
         
