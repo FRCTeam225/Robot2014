@@ -19,25 +19,32 @@ import org.team225.robot2014.PortMap;
  */
 public class Intake extends Subsystem {
 
-    Talon roller = new Talon(PortMap.COLLECTOR_ROLLER);
-    Talon angleA = new Talon(PortMap.COLLECTOR_ANGLE_A);
-    Talon angleB = new Talon(PortMap.COLLECTOR_ANGLE_B);
-    AnalogChannel anglePot = new AnalogChannel(PortMap.COLLECTOR_ANGLE_POT);
-    PIDController anglePID = new PIDController(0.01, 0, 0.01, anglePot, new PIDOutput() 
-    {
-        public void pidWrite(double value)
-        {
-            angleA.set(-value);
-            angleB.set(value);
-        }
-    });
+    Talon roller;
+    Talon angleA;
+    Talon angleB;
+    AnalogChannel anglePot;
+    PIDController anglePID;
     
     public Intake()
     {
+        roller = new Talon(PortMap.COLLECTOR_ROLLER);
+        angleA = new Talon(PortMap.COLLECTOR_ANGLE_A);
+        angleB = new Talon(PortMap.COLLECTOR_ANGLE_B);
+        anglePot = new AnalogChannel(PortMap.COLLECTOR_ANGLE_POT);
+        
+        anglePID = new PIDController(0.01, 0, 0.01, anglePot, new PIDOutput() 
+        {
+            public void pidWrite(double value)
+            {
+                angleA.set(-value);
+                angleB.set(value);
+            }
+        });
+        
         anglePID.enable();
-        anglePID.setSetpoint(Constants.ARM_UP);
-        SmartDashboard.putData("anglePID", anglePID);
-        anglePID.setAbsoluteTolerance(10);
+        anglePID.setSetpoint(Constants.ARM_STOW);
+        //SmartDashboard.putData("anglePID", anglePID);
+        anglePID.setAbsoluteTolerance(100);
     }
     
     public boolean isAtTarget()
@@ -52,12 +59,28 @@ public class Intake extends Subsystem {
     
     public void setRoller(boolean state, boolean reverse)
     {
+        setRoller(state, reverse, false);
+    }
+    
+    public void setRoller(boolean state, boolean reverse, boolean slow)
+    {
         if (state)
         {
             if ( reverse )
-                roller.set(-1);
+            {
+                if ( slow )
+                    roller.set(-0.5);
+                else
+                    roller.set(-1);
+            }
             else
-                roller.set(1);
+            {
+                if ( slow )
+                    roller.set(0.5);
+                else
+                    roller.set(1);
+            }
+                
         }
         else
         {

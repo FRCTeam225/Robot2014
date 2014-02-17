@@ -12,7 +12,8 @@ public class SimplePID {
     double kP, kI, kD;
     double error;
     double target; 
-    double okError = 1;
+    double okError = 100;
+    int loopsStable = 0;
     double errSum = 0;
     double maxInc = 0.01;
     double previousValue = 0;
@@ -48,7 +49,13 @@ public class SimplePID {
     
     public boolean atTarget()
     {
-        return Math.abs(getError()) <= okError;
+        if ( Math.abs(getError()) <= okError )
+        {
+            loopsStable++;
+        }
+        else
+            loopsStable = 0;
+        return loopsStable > 5;
     }
     
     public void setP(double kP)

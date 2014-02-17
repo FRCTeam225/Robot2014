@@ -5,13 +5,24 @@
 package org.team225.robot2014;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.team225.robot2014.commands.catapult.ChangeAngle;
+import org.team225.robot2014.commands.catapult.CloseShot;
+import org.team225.robot2014.commands.catapult.FarShot;
 import org.team225.robot2014.commands.catapult.Launch;
+import org.team225.robot2014.commands.catapult.LockCatapult;
+import org.team225.robot2014.commands.catapult.ResetCatapult;
+import org.team225.robot2014.commands.catapult.TrussShot;
+import org.team225.robot2014.commands.catcher.Catch;
+import org.team225.robot2014.commands.catcher.OpenCatcher;
+import org.team225.robot2014.commands.catcher.SetCatcher;
 import org.team225.robot2014.commands.intake.Collect;
 import org.team225.robot2014.commands.intake.Eject;
 import org.team225.robot2014.commands.intake.MoveArm;
+import org.team225.robot2014.commands.intake.Pass;
 import org.team225.robot2014.commands.intake.SetRollers;
-import org.team225.robot2014.commands.intake.Stow;
+import org.team225.robot2014.commands.intake.StowWithBall;
 
 /**
  *
@@ -20,17 +31,32 @@ import org.team225.robot2014.commands.intake.Stow;
 public class OI {
     public static Joystick driver = new Joystick(1); // Driver gamepad
     public static Joystick operator = new Joystick(2);
-    
+        
     public static void init()
     {
-        new JoystickButton(driver, 1).whenPressed(new SetRollers(true));
-        new JoystickButton(driver, 3).whenPressed(new SetRollers(false));
-        new AxisButton(driver, 6, 0.5).whenPressed(new Collect());
-        new AxisButton(driver, 6, -0.5).whenPressed(new Stow());
-        new AxisButton(driver, 5, -0.5).whenPressed(new Eject());
-        //new JoystickButton(driver, 1).whenPressed(new Launch(true, true));
-        //new JoystickButton(driver, 2).whenPressed(new Launch(false, true));
-        //new JoystickButton(driver, 3).whenPressed(new Launch(true, false));
-        //new JoystickButton(driver, 4).whenPressed(new Launch(false, false));
+        
+        new JoystickButton(operator, 1).whenPressed(new FarShot());
+        new JoystickButton(operator, 2).whenPressed(new Pass());
+        new JoystickButton(operator, 3).whenPressed(new TrussShot());
+        new JoystickButton(operator, 4).whenPressed(new CloseShot());
+ 
+        new JoystickButton(operator, 9).whenPressed(new MoveArm(Constants.ARM_STOW));
+        
+        new JoystickButton(operator, 7).whenPressed(new OpenCatcher());
+        new JoystickButton(operator, 5).whenPressed(new Catch());
+        
+        new JoystickButton(operator, 8).whenPressed(new Collect());
+        new JoystickButton(operator, 6).whenPressed(new StowWithBall());
+        
+        Button tmp;
+        tmp = new AxisButton(operator, 2, -0.5);
+        tmp.whenPressed(new SetRollers(true, false, true));
+        tmp.whenReleased(new SetRollers(false));
+        
+        tmp = new AxisButton(operator, 2, 0.5);
+        tmp.whenPressed(new SetRollers(true, true, true));
+        tmp.whenReleased(new SetRollers(false));
+        
+        
     }
 }

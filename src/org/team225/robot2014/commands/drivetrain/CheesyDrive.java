@@ -13,9 +13,10 @@ import org.team225.robot2014.OI;
  */
 public class CheesyDrive extends CommandBase {
     
-    double turn_gain = 1;
-    double skim_gain = 0.4;
+    double turn_gain = 1.2;
+    double skim_gain = 1; // was 0.4
     double turn_velocity_multiplier_gain = 1.0;
+    double quickStopAccumulator = 0;
     
     public CheesyDrive()
     {
@@ -27,27 +28,26 @@ public class CheesyDrive extends CommandBase {
     }
 
     protected void execute() {
+
         double throttle = OI.driver.getRawAxis(2);
         double turnInput = OI.driver.getRawAxis(3);
-        
-        turnInput = Math.sin((Math.PI/2)*turnInput);
-        //turnInput = Math.sin((Math.PI/2)*turnInput);
-        //turnInput = Math.sin((Math.PI/2)*turnInput);
+        double wheelNonLinearity = 0.5;
+        turnInput = Math.sin((Math.PI/2)*wheelNonLinearity*turnInput)/Math.sin((Math.PI/2)*wheelNonLinearity);
+        turnInput = Math.sin((Math.PI/2)*wheelNonLinearity*turnInput)/Math.sin((Math.PI/2)*wheelNonLinearity);
+        turnInput = Math.sin((Math.PI/2)*wheelNonLinearity*turnInput)/Math.sin((Math.PI/2)*wheelNonLinearity);
         
         if ( Math.abs(turnInput) < 0.07 )
             turnInput = 0;
         
-        turnInput *= turn_gain;
-        
-        double turn = turnInput*Math.abs(turn_velocity_multiplier_gain*OI.driver.getRawAxis(2));
-
+        double turn = 0;
         if ( Math.abs(throttle) < 0.07 )
         {
             throttle = 0;
             turn = turnInput;
         }
+        else
+            turn = (turnInput*turn_gain)*Math.abs(turn_velocity_multiplier_gain*OI.driver.getRawAxis(2));
         
-
         double left_orig = throttle-turn;
         double right_orig = throttle+turn;
 
@@ -55,7 +55,6 @@ public class CheesyDrive extends CommandBase {
         double right = right_orig+skim(left_orig);
 
         drivetrain.setMotorSpeeds(left, right);
-        System.out.println(left+", "+right);
         if ( OI.driver.getRawButton(5) )
             drivetrain.shift(true);
         else if ( OI.driver.getRawButton(6) )

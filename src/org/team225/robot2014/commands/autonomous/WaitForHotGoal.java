@@ -21,7 +21,7 @@ public class WaitForHotGoal extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return isTimedOut() || piComm.getBoolean("hasTarget") || (DriverStation.getInstance().getMatchTime() > 5);
+        return isTimedOut() || piComm.hasTarget() || (DriverStation.getInstance().getMatchTime() > 5);
     }
 
     protected void end() {

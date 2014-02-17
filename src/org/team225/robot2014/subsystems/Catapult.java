@@ -17,13 +17,21 @@ import org.team225.robot2014.PortMap;
  */
 public class Catapult extends Subsystem {
         
-    DoubleSolenoid left = new DoubleSolenoid(PortMap.LEFT_CATAPULT_PISTON_A, PortMap.LEFT_CATAPULT_PISTON_B);
-    DoubleSolenoid right = new DoubleSolenoid(PortMap.RIGHT_CATAPULT_PISTON_A, PortMap.RIGHT_CATAPULT_PISTON_B);
+    DoubleSolenoid left;
+    DoubleSolenoid right;
 
-    DoubleSolenoid lock = new DoubleSolenoid(PortMap.CATAPULT_LATCH_A, PortMap.CATAPULT_LATCH_B);
+    Solenoid lock;
+    Solenoid angle;
+
+    boolean flipCylinder= false;
+    public Catapult()
+    {
+        left = new DoubleSolenoid(1, PortMap.LEFT_CATAPULT_PISTON_A, PortMap.LEFT_CATAPULT_PISTON_B);
+        right = new DoubleSolenoid(1, PortMap.RIGHT_CATAPULT_PISTON_A, PortMap.RIGHT_CATAPULT_PISTON_B);
+        lock = new Solenoid(2, PortMap.CATAPULT_LATCH);
+        angle = new Solenoid(2, PortMap.CATAPULT_ANGLE);
+    }
     
-    //DigitalInput armDownLimit = new DigitalInput(PortMap.ARM_DOWN_LIMIT);
-
     protected void initDefaultCommand() {
     }
     
@@ -37,53 +45,38 @@ public class Catapult extends Subsystem {
         if ( on )
         {
             if ( both )
+            {
                 left.set(DoubleSolenoid.Value.kForward);
-            right.set(DoubleSolenoid.Value.kForward);
+                right.set(DoubleSolenoid.Value.kForward);
+            }
+            else
+            {
+                if (flipCylinder)
+                {
+                    right.set(DoubleSolenoid.Value.kForward);
+                    flipCylinder = false;
+                }
+                else
+                {
+                    left.set(DoubleSolenoid.Value.kForward);
+                    flipCylinder = true;
+                }
+            }
         }
         else
         {
-            left.set(DoubleSolenoid.Value.kReverse);
-            right.set(DoubleSolenoid.Value.kReverse);
+           left.set(DoubleSolenoid.Value.kReverse);
+           right.set(DoubleSolenoid.Value.kReverse);
         }
     }
     
     
-    public void setAngle(boolean high){
-        //shift.set(high);
+    public void setAngle(boolean lowArc){
+        angle.set(lowArc);
     }
     
     public void setLock(boolean on)
     {
-        if ( on )
-            lock.set(DoubleSolenoid.Value.kForward);
-        else
-            lock.set(DoubleSolenoid.Value.kReverse);
+        lock.set(!on);
     }
-    
-    
-    public boolean armIsDown(){
-        return false;
-     //   return armDownLimit.get();
-    }
-    
-    
-    public void debug()
-    {
-        if ( OI.driver.getRawButton(1) )
-            left.set(DoubleSolenoid.Value.kForward);
-        else
-            left.set(DoubleSolenoid.Value.kReverse);
-        
-        if ( OI.driver.getRawButton(2) )
-            right.set(DoubleSolenoid.Value.kForward);
-        else
-            right.set(DoubleSolenoid.Value.kReverse);
-         
-         if ( OI.driver.getRawButton(3) )
-            lock.set(DoubleSolenoid.Value.kForward);
-        else
-            lock.set(DoubleSolenoid.Value.kReverse);
-    }
-    
-    
 }

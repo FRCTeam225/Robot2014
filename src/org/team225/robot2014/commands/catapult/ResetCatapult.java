@@ -10,13 +10,12 @@ import org.team225.robot2014.CommandBase;
  *
  * @author Andrew
  */
-public class ResetCatapult extends CommandBase {
+public class ResetCatapult extends CatapultCommandSafetyWrapper {
 
     public ResetCatapult()
     {
         requires(catapult);
-        setTimeout(2.0);
-        setInterruptible(false);
+        setTimeout(0.4);
     }
     
     protected void initialize() {

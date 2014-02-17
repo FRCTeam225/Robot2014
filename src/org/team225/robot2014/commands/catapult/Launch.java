@@ -5,18 +5,20 @@
 package org.team225.robot2014.commands.catapult;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.team225.robot2014.Constants;
+import org.team225.robot2014.commands.intake.MoveArm;
 
 /**
  *
  * @author Andrew
  */
 public class Launch extends CommandGroup {
-    public Launch(boolean latch, boolean bothCylinders)
+    public Launch(boolean latch, boolean bothCylinders, double timeDelay)
     {
-        setInterruptible(false);
+        addSequential(new MoveArm(Constants.ARM_OUT));
         if ( latch )
             addSequential(new LockCatapult());
-        addSequential(new ReleaseCatapult(bothCylinders));
+        addSequential(new ReleaseCatapult(bothCylinders, timeDelay));
         addSequential(new ResetCatapult());
     }
 }

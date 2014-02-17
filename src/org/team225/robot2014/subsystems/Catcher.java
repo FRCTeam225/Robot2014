@@ -14,14 +14,15 @@ import org.team225.robot2014.PortMap;
  */
 public class Catcher extends Subsystem {
     
-    Solenoid left = new Solenoid(PortMap.CATCHER_LEFT);
-    Solenoid right = new Solenoid(PortMap.CATCHER_RIGHT);
-
+    Solenoid catcher;
+    public Catcher()
+    {
+        catcher = new Solenoid(1, PortMap.CATCHER_PISTON);
+    }
     protected void initDefaultCommand() {
     }
     
     public void setDeployed(boolean on){
-        left.set(on);
-        right.set(on);
+        catcher.set(on);
     }
 }

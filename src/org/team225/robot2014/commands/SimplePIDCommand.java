@@ -33,8 +33,8 @@ public abstract class SimplePIDCommand extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return false;
-        //return pid.atTarget();
+        //return false;
+        return pid.atTarget();
     }
 
     protected void end() {

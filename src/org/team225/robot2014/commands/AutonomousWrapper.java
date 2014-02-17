@@ -17,7 +17,7 @@ public class AutonomousWrapper {
     Class autonomous = null;
     String description = "";
     boolean caresAboutHotGoal = false;
-    static boolean startingGoalIsHot = false;
+    public static boolean startingGoalIsHot = false;
     
     public AutonomousWrapper(Class autonomous, String description, boolean caresAboutHotGoal)
     {
@@ -40,8 +40,13 @@ public class AutonomousWrapper {
     {   
         if ( caresAboutHotGoal )
         {
-            Timer.delay(0.5);
-            AutonomousWrapper.startingGoalIsHot = CommandBase.piComm.getBoolean("hasTarget");
+            try {
+                CommandBase.piComm.updateState();
+                Thread.sleep(500);
+                AutonomousWrapper.startingGoalIsHot = CommandBase.piComm.hasTarget();
+            } catch (Exception ex) {
+                System.out.println("Hot Goal updateState() failed");
+            }
         }
         
         Command command = null;
@@ -53,7 +58,6 @@ public class AutonomousWrapper {
             command = new OneBall();
         }
         command.start();
-        System.out.println(command);
         return command;
     }
 }

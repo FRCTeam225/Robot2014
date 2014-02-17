@@ -10,13 +10,12 @@ import org.team225.robot2014.CommandBase;
  *
  * @author Andrew
  */
-public class LockCatapult extends CommandBase {
+public class LockCatapult extends CatapultCommandSafetyWrapper {
 
     public LockCatapult()
     {
         requires(catapult);
-        setTimeout(0.5);
-        setInterruptible(false);
+        setTimeout(0.1);
     }
     
     protected void initialize() {

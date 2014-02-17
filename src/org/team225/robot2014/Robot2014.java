@@ -32,6 +32,7 @@ public class Robot2014 extends IterativeRobot {
 
     public void autonomousInit()
     {
+        CommandBase.catapult.setLock(false);
         autonomousCommand = autonomousOptions[selectedAutonomous].start();
     }
     
@@ -44,6 +45,7 @@ public class Robot2014 extends IterativeRobot {
 
     public void teleopInit()
     {
+        CommandBase.catapult.setLock(false);
         if ( autonomousCommand != null )
             autonomousCommand.cancel();
     }
@@ -52,10 +54,8 @@ public class Robot2014 extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        //CommandBase.catapult.debug();
         Scheduler.getInstance().run();
-        System.out.println(CommandBase.intake.getArmPot());
-      //  System.out.println(CommandBase.drivetrain.getAngle());
+        System.out.println(CommandBase.drivetrain.getAngle()+" - "+CommandBase.drivetrain.getAverageDistance());
     }
     
     /**
@@ -74,16 +74,27 @@ public class Robot2014 extends IterativeRobot {
     public void disabledPeriodic()
     {
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
-        if ( OI.driver.getRawButton(1) && selectedAutonomous < autonomousOptions.length-1 )
+        if ( OI.driver.getRawButton(2) && selectedAutonomous < autonomousOptions.length-1 )
         {
             dsLCD.clear();
             selectedAutonomous++;
             Timer.delay(0.5);
         }
-        else if ( OI.driver.getRawButton(2) && selectedAutonomous > 0  )
+        else if ( OI.driver.getRawButton(1) && selectedAutonomous > 0  )
         {
             dsLCD.clear();
             selectedAutonomous--;
+            Timer.delay(0.5);
+        }
+        else if ( OI.driver.getRawButton(3) )
+        {
+            CommandBase.drivetrain.resetDistance();
+            CommandBase.drivetrain.resetGyro();
+            dsLCD.clear();
+        }
+        else if ( OI.driver.getRawButton(4) )
+        {
+            CommandBase.piComm.updateState();
             Timer.delay(0.5);
         }
         
@@ -92,6 +103,10 @@ public class Robot2014 extends IterativeRobot {
 
         dsLCD.println(DriverStationLCD.Line.kUser1, 1, "--Selected Autonomous--");
         dsLCD.println(DriverStationLCD.Line.kUser2, 1, auto.getDescription());
+        dsLCD.println(DriverStationLCD.Line.kUser3, 1, "D: "+CommandBase.drivetrain.getAverageDistance());
+        dsLCD.println(DriverStationLCD.Line.kUser4, 1, "A: "+CommandBase.drivetrain.getAngle());
+        dsLCD.println(DriverStationLCD.Line.kUser5, 1, "Hot Goal: " + (CommandBase.piComm.hasTarget()?"yes":"no")+" ");
+        
         dsLCD.updateLCD();
             
     }

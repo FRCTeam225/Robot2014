@@ -1,0 +1,21 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package org.team225.robot2014.commands.catcher;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.team225.robot2014.Constants;
+import org.team225.robot2014.commands.intake.MoveArm;
+
+/**
+ *
+ * @author Andrew
+ */
+public class OpenCatcher extends CommandGroup {
+    public OpenCatcher()
+    {
+        addSequential(new SetCatcher(true));
+        addSequential(new MoveArm(Constants.ARM_OUT));
+    }
+}

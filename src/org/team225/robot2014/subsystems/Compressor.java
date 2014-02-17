@@ -15,8 +15,14 @@ import org.team225.robot2014.commands.AutomaticCompressor;
  * @author Andrew
  */
 public class Compressor extends Subsystem {
-    Relay compressor = new Relay(PortMap.COMPRESSOR);
-    DigitalInput pressureSwitch = new DigitalInput(PortMap.AIR_SWITCH);
+    Relay compressor;
+    DigitalInput pressureSwitch;
+    
+    public Compressor()
+    {
+        compressor = new Relay(PortMap.COMPRESSOR);
+        pressureSwitch = new DigitalInput(PortMap.AIR_SWITCH);
+    }
     
     public void set(boolean state)
     {

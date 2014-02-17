@@ -13,14 +13,13 @@ import org.team225.robot2014.CommandBase;
  *
  * @author KageRa
  */
-public class ReleaseCatapult extends CommandBase{
+public class ReleaseCatapult extends CatapultCommandSafetyWrapper{
 
     boolean bothCylinders;
-    public ReleaseCatapult(boolean bothCylinders){
+    public ReleaseCatapult(boolean bothCylinders, double timeDelay){
         requires(catapult);
         this.bothCylinders = bothCylinders;
-        setTimeout(1.0);
-        setInterruptible(false);
+        setTimeout(timeDelay);
     }
     
     protected void initialize() {
@@ -37,7 +36,6 @@ public class ReleaseCatapult extends CommandBase{
 
     protected void end() {
         catapult.setLock(false);
-        catapult.setPressurized(true);
     }
     
 }

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import org.team225.robot2014.picomm.ThreadedPiCommunications;
 import org.team225.robot2014.subsystems.Catapult;
 import org.team225.robot2014.subsystems.Catcher;
 import org.team225.robot2014.subsystems.Compressor;
@@ -28,7 +29,7 @@ public abstract class CommandBase extends Command {
     public static Catcher catcher;
     public static Compressor compressor;
     
-    public static NetworkTable piComm;
+    public static ThreadedPiCommunications piComm;
     
     public static Timer matchTimer;
     
@@ -38,15 +39,9 @@ public abstract class CommandBase extends Command {
         compressor = new Compressor();
         catapult = new Catapult();
         intake = new Intake();
-        //catcher = new Catcher();
+        catcher = new Catcher();
         
-        piComm = NetworkTable.getTable("techfire");
-        setTableDefaults();
-    }
-    
-    public static void setTableDefaults()
-    {
-        piComm.putBoolean("hasTarget", false);
+        piComm = new ThreadedPiCommunications();
     }
 
     protected void interrupted() {
