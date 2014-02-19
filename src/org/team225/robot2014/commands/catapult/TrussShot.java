@@ -13,6 +13,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class TrussShot extends CommandGroup {
     public TrussShot()
     {
-        addSequential(new Launch(true, false, 0.225));
+        addSequential(new Launch(false, true, 0.225));
     }
 }

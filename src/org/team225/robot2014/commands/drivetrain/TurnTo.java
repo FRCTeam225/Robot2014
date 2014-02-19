@@ -4,7 +4,7 @@
  */
 package org.team225.robot2014.commands.drivetrain;
 
-import org.team225.robot2014.Constants;
+import org.team225.robot2014.constants.Constants;
 import org.team225.robot2014.commands.SimplePIDCommand;
 
 /**
@@ -15,7 +15,7 @@ public class TurnTo extends SimplePIDCommand {
 
     public TurnTo(double angle)
     {
-        super(Constants.DRIVETRAIN_TURN_P, Constants.DRIVETRAIN_TURN_I, Constants.DRIVETRAIN_TURN_D);
+        super(Constants.getConstants().get("DRIVETRAIN_TURN_P"), Constants.getConstants().get("DRIVETRAIN_TURN_I"), Constants.getConstants().get("DRIVETRAIN_TURN_D"));
         pid.setTarget(angle);
         requires(drivetrain);
     }

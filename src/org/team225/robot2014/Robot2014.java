@@ -46,6 +46,7 @@ public class Robot2014 extends IterativeRobot {
     public void teleopInit()
     {
         CommandBase.catapult.setLock(false);
+        CommandBase.catapult.setPressurized(false);
         if ( autonomousCommand != null )
             autonomousCommand.cancel();
     }
@@ -55,7 +56,6 @@ public class Robot2014 extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        System.out.println(CommandBase.drivetrain.getAngle()+" - "+CommandBase.drivetrain.getAverageDistance());
     }
     
     /**
@@ -74,6 +74,7 @@ public class Robot2014 extends IterativeRobot {
     public void disabledPeriodic()
     {
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
+
         if ( OI.driver.getRawButton(2) && selectedAutonomous < autonomousOptions.length-1 )
         {
             dsLCD.clear();

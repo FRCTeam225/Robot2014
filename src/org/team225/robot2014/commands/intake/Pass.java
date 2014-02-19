@@ -5,7 +5,7 @@
 package org.team225.robot2014.commands.intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.team225.robot2014.Constants;
+import org.team225.robot2014.constants.Constants;
 
 /**
  *
@@ -15,6 +15,6 @@ public class Pass extends CommandGroup {
     public Pass()
     {
         addSequential(new SetRollers(true, true));
-        addSequential(new MoveArm(Constants.ARM_STOW));
+        addSequential(new MoveArm(Constants.getConstants().getInt("ARM_STOW")));
     }
 }

@@ -4,7 +4,7 @@
  */
 package org.team225.robot2014.commands.drivetrain;
 
-import org.team225.robot2014.Constants;
+import org.team225.robot2014.constants.Constants;
 import org.team225.robot2014.commands.SimplePIDCommand;
 
 /**
@@ -21,7 +21,7 @@ public class DriveDistance extends SimplePIDCommand {
     
     public DriveDistance(double distance, double maxSpeed)
     {
-        super(Constants.DRIVETRAIN_P, Constants.DRIVETRAIN_I, Constants.DRIVETRAIN_D);
+        super(Constants.getConstants().get("DRIVETRAIN_P"), Constants.getConstants().get("DRIVETRAIN_I"), Constants.getConstants().get("DRIVETRAIN_D"));
         
         pid.setOutputConstraints(maxSpeed, -maxSpeed);
         pid.setTarget(distance);
@@ -40,7 +40,7 @@ public class DriveDistance extends SimplePIDCommand {
         double left = value;
         double right = value;
         
-        double offset = Constants.DRIVETRAIN_DRIVESTRIAGHT_P*(drivetrain.getAngle()-angle);
+        double offset = Constants.getConstants().get("DRIVETRAIN_DRIVESTRAIGHT_P")*(drivetrain.getAngle()-angle);
         left += offset;
         right -= offset;
         System.out.println(offset);

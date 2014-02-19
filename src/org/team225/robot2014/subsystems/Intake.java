@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.team225.robot2014.Constants;
+import org.team225.robot2014.constants.Constants;
 import org.team225.robot2014.PortMap;
 
 /**
@@ -32,7 +32,7 @@ public class Intake extends Subsystem {
         angleB = new Talon(PortMap.COLLECTOR_ANGLE_B);
         anglePot = new AnalogChannel(PortMap.COLLECTOR_ANGLE_POT);
         
-        anglePID = new PIDController(0.01, 0, 0.01, anglePot, new PIDOutput() 
+        anglePID = new PIDController(Constants.getConstants().get("ARM_P"), Constants.getConstants().get("ARM_I"), Constants.getConstants().get("ARM_D"), anglePot, new PIDOutput() 
         {
             public void pidWrite(double value)
             {
@@ -42,8 +42,8 @@ public class Intake extends Subsystem {
         });
         
         anglePID.enable();
-        anglePID.setSetpoint(Constants.ARM_STOW);
-        //SmartDashboard.putData("anglePID", anglePID);
+        anglePID.setSetpoint(Constants.getConstants().getInt("ARM_STOW"));
+        SmartDashboard.putData("anglePID", anglePID);
         anglePID.setAbsoluteTolerance(100);
     }
     

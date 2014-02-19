@@ -4,21 +4,16 @@
  */
 package org.team225.robot2014;
 
+import org.team225.robot2014.constants.Constants;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.team225.robot2014.commands.catapult.ChangeAngle;
 import org.team225.robot2014.commands.catapult.CloseShot;
 import org.team225.robot2014.commands.catapult.FarShot;
-import org.team225.robot2014.commands.catapult.Launch;
-import org.team225.robot2014.commands.catapult.LockCatapult;
-import org.team225.robot2014.commands.catapult.ResetCatapult;
 import org.team225.robot2014.commands.catapult.TrussShot;
 import org.team225.robot2014.commands.catcher.Catch;
 import org.team225.robot2014.commands.catcher.OpenCatcher;
-import org.team225.robot2014.commands.catcher.SetCatcher;
 import org.team225.robot2014.commands.intake.Collect;
-import org.team225.robot2014.commands.intake.Eject;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.Pass;
 import org.team225.robot2014.commands.intake.SetRollers;
@@ -40,7 +35,7 @@ public class OI {
         new JoystickButton(operator, 3).whenPressed(new TrussShot());
         new JoystickButton(operator, 4).whenPressed(new CloseShot());
  
-        new JoystickButton(operator, 9).whenPressed(new MoveArm(Constants.ARM_STOW));
+        new JoystickButton(operator, 9).whenPressed(new MoveArm(Constants.getConstants().getInt("ARM_STOW")));
         
         new JoystickButton(operator, 7).whenPressed(new OpenCatcher());
         new JoystickButton(operator, 5).whenPressed(new Catch());
