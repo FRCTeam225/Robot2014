@@ -24,7 +24,7 @@ public class PortMap {
     public static final int RIGHT_ENCODERA = 4; // Digital
     public static final int RIGHT_ENCODERB = 5; // Digital
     
-    public static final int SHIFT_PISTON = 1;
+    public static final int SHIFT_PISTON = 7;
     
     public static final int GYRO = 1; // Analog
     
@@ -32,8 +32,7 @@ public class PortMap {
     public static final int LEFT_CATAPULT_PISTON_B = 2;//Solenoid
     public static final int RIGHT_CATAPULT_PISTON_A = 3;//Solinoid
     public static final int RIGHT_CATAPULT_PISTON_B = 4;//Solinoid
-    public static final int CATAPULT_LATCH = 2;//Solinoid
-    public static final int CATAPULT_ANGLE = 3;
+    public static final int CATAPULT_LATCH = 8;//Solinoid
 
     
     public static final int ARM_DOWN_LIMIT = 5;//Digital

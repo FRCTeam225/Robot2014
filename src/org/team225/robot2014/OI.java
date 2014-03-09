@@ -1,7 +1,9 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.team225.robot2014;
 
 import org.team225.robot2014.constants.Constants;
@@ -30,11 +32,13 @@ public class OI {
     public static void init()
     {
         
-        new JoystickButton(operator, 1).whenPressed(new FarShot());
+        
         new JoystickButton(operator, 2).whenPressed(new Pass());
+        
+        new JoystickButton(operator, 1).whenPressed(new CloseShot());
+        new JoystickButton(operator, 4).whenPressed(new FarShot());
+        
         new JoystickButton(operator, 3).whenPressed(new TrussShot());
-        new JoystickButton(operator, 4).whenPressed(new CloseShot());
- 
         new JoystickButton(operator, 9).whenPressed(new MoveArm(Constants.getConstants().getInt("ARM_STOW")));
         
         new JoystickButton(operator, 7).whenPressed(new OpenCatcher());

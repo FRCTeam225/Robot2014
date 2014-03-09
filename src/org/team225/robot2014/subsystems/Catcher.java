@@ -17,7 +17,7 @@ public class Catcher extends Subsystem {
     Solenoid catcher;
     public Catcher()
     {
-        catcher = new Solenoid(1, PortMap.CATCHER_PISTON);
+        catcher = new Solenoid(PortMap.CATCHER_PISTON);
     }
     protected void initDefaultCommand() {
     }

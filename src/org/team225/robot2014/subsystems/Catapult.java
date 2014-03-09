@@ -21,15 +21,13 @@ public class Catapult extends Subsystem {
     DoubleSolenoid right;
 
     Solenoid lock;
-    Solenoid angle;
 
     boolean flipCylinder= false;
     public Catapult()
     {
-        left = new DoubleSolenoid(1, PortMap.LEFT_CATAPULT_PISTON_A, PortMap.LEFT_CATAPULT_PISTON_B);
-        right = new DoubleSolenoid(1, PortMap.RIGHT_CATAPULT_PISTON_A, PortMap.RIGHT_CATAPULT_PISTON_B);
-        lock = new Solenoid(2, PortMap.CATAPULT_LATCH);
-        angle = new Solenoid(2, PortMap.CATAPULT_ANGLE);
+        left = new DoubleSolenoid(PortMap.LEFT_CATAPULT_PISTON_A, PortMap.LEFT_CATAPULT_PISTON_B);
+        right = new DoubleSolenoid(PortMap.RIGHT_CATAPULT_PISTON_A, PortMap.RIGHT_CATAPULT_PISTON_B);
+        lock = new Solenoid(PortMap.CATAPULT_LATCH);
     }
     
     protected void initDefaultCommand() {
@@ -70,13 +68,8 @@ public class Catapult extends Subsystem {
         }
     }
     
-    
-    public void setAngle(boolean lowArc){
-        angle.set(lowArc);
-    }
-    
     public void setLock(boolean on)
     {
-        lock.set(!on);
+        lock.set(on);
     }
 }

@@ -14,6 +14,6 @@ public class FarShot extends CommandGroup {
     public FarShot()
     {
         //addSequential(new Launch(true, true, 0.180));
-        addSequential(new Launch(true, true, 0.12));
+        addSequential(new Launch(true, true, 0.07));
     }
 }

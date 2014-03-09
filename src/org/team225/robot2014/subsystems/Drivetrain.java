@@ -48,7 +48,7 @@ public class Drivetrain extends Subsystem {
         leftEncoder.start();
         rightEncoder.start();
         
-        shifter = new Solenoid(2, PortMap.SHIFT_PISTON);
+        shifter = new Solenoid(PortMap.SHIFT_PISTON);
     }
     
     public void resetAngle()

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
@@ -69,12 +70,14 @@ public class Robot2014 extends IterativeRobot {
     {
         CommandBase.drivetrain.resetDistance();
         CommandBase.drivetrain.resetAngle();
+        
+        safeSubsystem(CommandBase.catapult);
     }
     
     public void disabledPeriodic()
     {
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
-
+        System.out.println(CommandBase.intake.getArmPot());
         if ( OI.driver.getRawButton(2) && selectedAutonomous < autonomousOptions.length-1 )
         {
             dsLCD.clear();
@@ -110,6 +113,14 @@ public class Robot2014 extends IterativeRobot {
         
         dsLCD.updateLCD();
             
+    }
+    
+    
+    public void safeSubsystem(Subsystem s)
+    {
+        Command cmd = s.getCurrentCommand();
+        if ( cmd != null )
+            cmd.cancel();
     }
     
 }

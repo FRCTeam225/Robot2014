@@ -15,7 +15,7 @@ import javax.microedition.io.Connector;
  */
 public class Constants extends DoubleTable {
     public static Constants constants = null;
-
+    public boolean isPracticeBot = false;
     public Constants()
     {
         put("DRIVETRAIN_P", 0.0007);
@@ -35,9 +35,15 @@ public class Constants extends DoubleTable {
         put("ARM_STOW", 800);
         put("ARM_UP", 700);
         put("ARM_OUT", 540);
+        put("ARM_SHOOT", 540);
         
         put("AUTO_DISTANCE_TO_GOALS", 8500);
         put("AUTO_DISTANCE_TO_GOALS_2BALL", 5300);
+    }
+    
+    public boolean isPracticeBot()
+    {
+        return isPracticeBot;
     }
     
     public static Constants getConstants()
@@ -57,6 +63,7 @@ public class Constants extends DoubleTable {
         if ( isPracticeRobot )
         {
             constants = new PracticeRobotConstants();
+            
             System.out.println("I AM A PRACTICE ROBOT!");
 
         }
@@ -65,6 +72,7 @@ public class Constants extends DoubleTable {
             constants = new Constants();
             System.out.println("I AM A COMPETITION ROBOT");
         }
+        constants.isPracticeBot = isPracticeRobot;
         return constants;
     }
 }
