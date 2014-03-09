@@ -15,6 +15,6 @@ public class Pass extends CommandGroup {
     public Pass()
     {
         addSequential(new SetRollers(true, true));
-        addSequential(new MoveArm(Constants.getConstants().getInt("ARM_STOW")));
+        addSequential(new MoveArm(false));
     }
 }

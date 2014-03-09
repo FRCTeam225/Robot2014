@@ -7,6 +7,7 @@ package org.team225.robot2014.subsystems;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,41 +21,24 @@ import org.team225.robot2014.PortMap;
 public class Intake extends Subsystem {
 
     Talon roller;
-    Talon angleA;
-    Talon angleB;
+    Solenoid angle;
     AnalogChannel anglePot;
-    PIDController anglePID;
     
     public Intake()
     {
         roller = new Talon(PortMap.COLLECTOR_ROLLER);
-        angleA = new Talon(PortMap.COLLECTOR_ANGLE_A);
-        angleB = new Talon(PortMap.COLLECTOR_ANGLE_B);
+        angle = new Solenoid(PortMap.COLLECTOR_ANGLE);
         anglePot = new AnalogChannel(PortMap.COLLECTOR_ANGLE_POT);
-        
-        anglePID = new PIDController(Constants.getConstants().get("ARM_P"), Constants.getConstants().get("ARM_I"), Constants.getConstants().get("ARM_D"), anglePot, new PIDOutput() 
-        {
-            public void pidWrite(double value)
-            {
-                angleA.set(-value);
-                angleB.set(value);
-            }
-        });
-        
-        anglePID.enable();
-        anglePID.setSetpoint(Constants.getConstants().getInt("ARM_STOW"));
-        SmartDashboard.putData("anglePID", anglePID);
-        anglePID.setAbsoluteTolerance(100);
     }
     
-    public boolean isAtTarget()
+    public boolean isDown()
     {
-        return anglePID.onTarget();
+        return anglePot.getValue() > Constants.getConstants().getInt("ARM_DOWN_THRESH");
     }
     
-    public void setAngle(double setpoint)
+    public void setAngle(boolean down)
     {
-        anglePID.setSetpoint(setpoint);
+        angle.set(down);
     }
     
     public void setRoller(boolean state, boolean reverse)

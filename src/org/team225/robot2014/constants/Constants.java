@@ -32,10 +32,7 @@ public class Constants extends DoubleTable {
         put("ARM_I", 0);
         put("ARM_D", 0.01);
         
-        put("ARM_STOW", 800);
-        put("ARM_UP", 700);
-        put("ARM_OUT", 540);
-        put("ARM_SHOOT", 540);
+        put("ARM_DOWN_THRESH", 540);
         
         put("AUTO_DISTANCE_TO_GOALS", 8500);
         put("AUTO_DISTANCE_TO_GOALS_2BALL", 5300);

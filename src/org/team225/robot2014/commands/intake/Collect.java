@@ -15,6 +15,6 @@ public class Collect extends CommandGroup {
     public Collect()
     {
         addSequential(new SetRollers(true));
-        addSequential(new MoveArm(Constants.getConstants().getInt("ARM_OUT")));
+        addSequential(new MoveArm(true));
     }
 }

@@ -29,6 +29,6 @@ public class OneBallHotGoal extends CommandGroup {
         
         addSequential(new FarShot());
         addSequential(new WaitCommand(2.0));
-        addSequential(new MoveArm(Constants.getConstants().getInt("ARM_STOW")));
+        addSequential(new MoveArm(false));
     }
 }

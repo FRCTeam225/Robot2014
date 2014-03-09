@@ -11,8 +11,8 @@ import org.team225.robot2014.CommandBase;
  * @author Andrew
  */
 public class MoveArm extends CommandBase {
-    int position = 0;
-    public MoveArm(int position)
+    boolean position = false;
+    public MoveArm(boolean position)
     {
         this.position = position;
     }
@@ -25,7 +25,10 @@ public class MoveArm extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return intake.isAtTarget();
+        if ( position )
+            return intake.isDown();
+        else
+            return !intake.isDown();
     }
 
     protected void end() {

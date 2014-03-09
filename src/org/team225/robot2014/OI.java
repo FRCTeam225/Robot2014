@@ -39,7 +39,7 @@ public class OI {
         new JoystickButton(operator, 4).whenPressed(new FarShot());
         
         new JoystickButton(operator, 3).whenPressed(new TrussShot());
-        new JoystickButton(operator, 9).whenPressed(new MoveArm(Constants.getConstants().getInt("ARM_STOW")));
+        new JoystickButton(operator, 9).whenPressed(new MoveArm(false));
         
         new JoystickButton(operator, 7).whenPressed(new OpenCatcher());
         new JoystickButton(operator, 5).whenPressed(new Catch());

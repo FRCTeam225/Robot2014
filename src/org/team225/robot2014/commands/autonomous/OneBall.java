@@ -25,6 +25,6 @@ public class OneBall extends CommandGroup {
         addSequential(new DriveDistance(Constants.getConstants().get("AUTO_DISTANCE_TO_GOALS")));
         addSequential(new FarShot());
         addSequential(new WaitCommand(2.0));
-        addSequential(new MoveArm(Constants.getConstants().getInt("ARM_STOW")));
+        addSequential(new MoveArm(false));
     }
 }

@@ -18,6 +18,6 @@ public class OpenCatcher extends CommandGroup {
     {
         addSequential(new SetRollers(false));
         addSequential(new SetCatcher(true));
-        addSequential(new MoveArm(Constants.getConstants().getInt("ARM_OUT")));
+        addSequential(new MoveArm(true));
     }
 }

@@ -40,8 +40,7 @@ public class PortMap {
     public static final int CATCHER_PISTON = 6;//Solenoid
     
     public static final int COLLECTOR_ROLLER = 9;
-    public static final int COLLECTOR_ANGLE_A = 8;
-    public static final int COLLECTOR_ANGLE_B = 7;
+    public static final int COLLECTOR_ANGLE = 5; //Solenoid 
     
     public static final int COLLECTOR_ANGLE_POT = 2;
     
