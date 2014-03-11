@@ -16,6 +16,8 @@ import org.team225.robot2014.commands.catapult.TrussShot;
 import org.team225.robot2014.commands.catcher.Catch;
 import org.team225.robot2014.commands.catcher.OpenCatcher;
 import org.team225.robot2014.commands.intake.Collect;
+import org.team225.robot2014.commands.intake.DragBall;
+import org.team225.robot2014.commands.intake.HoldBall;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.Pass;
 import org.team225.robot2014.commands.intake.SetRollers;
@@ -46,6 +48,10 @@ public class OI {
         
         new JoystickButton(operator, 8).whenPressed(new Collect());
         new JoystickButton(operator, 6).whenPressed(new StowWithBall());
+        
+        new JoystickButton(operator, 11).whenPressed(new HoldBall());
+        
+        new JoystickButton(driver, 1).whenPressed(new DragBall());
         
         Button tmp;
         tmp = new AxisButton(operator, 2, -0.5);

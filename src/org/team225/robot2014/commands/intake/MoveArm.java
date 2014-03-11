@@ -12,9 +12,17 @@ import org.team225.robot2014.CommandBase;
  */
 public class MoveArm extends CommandBase {
     boolean position = false;
+    boolean waitForMove = false;
+    public MoveArm(boolean position, boolean waitForMove)
+    {
+        requires(intake);
+        this.position = position;
+        this.waitForMove = waitForMove;
+    }
+    
     public MoveArm(boolean position)
     {
-        this.position = position;
+        this(position, true);
     }
 
     protected void initialize() {
@@ -25,10 +33,15 @@ public class MoveArm extends CommandBase {
     }
 
     protected boolean isFinished() {
+        return true;
+        /*
+        if ( !waitForMove )
+            return false;
+        
         if ( position )
             return intake.isDown();
         else
-            return !intake.isDown();
+            return !intake.isDown();*/
     }
 
     protected void end() {

@@ -13,17 +13,18 @@ import org.team225.robot2014.commands.SimplePIDCommand;
  */
 public class DriveDistance extends SimplePIDCommand {
     double angle = 0;
+    double maxSpeed = 0;
     public DriveDistance(double distance)
     {
         this(distance, 1);
-        requires(drivetrain);
     }
     
     public DriveDistance(double distance, double maxSpeed)
     {
         super(Constants.getConstants().get("DRIVETRAIN_P"), Constants.getConstants().get("DRIVETRAIN_I"), Constants.getConstants().get("DRIVETRAIN_D"));
-        
-        pid.setOutputConstraints(maxSpeed, -maxSpeed);
+        requires(drivetrain);
+        this.maxSpeed = maxSpeed;
+        pid.setOutputConstraints(1, -1);
         pid.setTarget(distance);
     }
     
@@ -37,6 +38,13 @@ public class DriveDistance extends SimplePIDCommand {
     }
 
     protected void setOutput(double value) {
+        
+        if ( value > maxSpeed )
+            value = maxSpeed;
+        
+        if ( value < -maxSpeed )
+            value = maxSpeed;
+        
         double left = value;
         double right = value;
         

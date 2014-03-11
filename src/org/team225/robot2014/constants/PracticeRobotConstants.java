@@ -13,6 +13,9 @@ public class PracticeRobotConstants extends Constants{
     public PracticeRobotConstants()
     {
         super();
+        
+        put("DRIVETRAIN_P", 0.0009);
+        
         //put("ARM_STOW", 300);
         //put("ARM_UP", 250);
         put("ARM_OUT", 550);

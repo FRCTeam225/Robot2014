@@ -41,6 +41,9 @@ public class PortMap {
     
     public static final int COLLECTOR_ROLLER = 9;
     public static final int COLLECTOR_ANGLE = 5; //Solenoid 
+    public static final int COLLECTOR_BALL_SENSOR = 6; // Digital
+    
+    public static final int COLLECTOR_DRAG_SENSOR = 7; // Digital
     
     public static final int COLLECTOR_ANGLE_POT = 2;
     

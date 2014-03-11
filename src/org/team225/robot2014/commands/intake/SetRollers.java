@@ -15,6 +15,16 @@ public class SetRollers extends CommandBase {
     boolean reverse = false;
     boolean slow = false;
     
+    boolean raw = false;
+    double speed = 0;
+    
+    public SetRollers(double speed)
+    {
+        requires(intake);
+        raw = true;
+        this.speed = speed;
+    }
+    
     public SetRollers(boolean state)
     {
         this(state, false);
@@ -36,7 +46,10 @@ public class SetRollers extends CommandBase {
     }
 
     protected void initialize() {
-        intake.setRoller(state, reverse, slow);
+        if ( raw )
+            intake.setRoller(speed);
+        else
+            intake.setRoller(state, reverse, slow);
     }
 
     protected void execute() {

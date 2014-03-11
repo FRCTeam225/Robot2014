@@ -13,7 +13,9 @@ import org.team225.robot2014.commands.catapult.Launch;
 import org.team225.robot2014.commands.catapult.SuperShot;
 import org.team225.robot2014.commands.catcher.SetCatcher;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
+import org.team225.robot2014.commands.drivetrain.DriveWhileDragging;
 import org.team225.robot2014.commands.intake.Collect;
+import org.team225.robot2014.commands.intake.DragBall;
 import org.team225.robot2014.commands.intake.HoldBall;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.SetRollers;
@@ -23,20 +25,25 @@ import org.team225.robot2014.commands.intake.StowWithBall;
  *
  * @author Andrew
  */
-public class TwoBall extends CommandGroup {
-    public TwoBall()
-    {
-        addSequential(new HoldBall());
-        addSequential(new DriveDistance(6640));
-        addSequential(new CloseShot());
-        addSequential(new WaitCommand(1));
+public class TwoBallDrag extends CommandGroup {
+    public TwoBallDrag()
+    {  
+        addSequential(new DriveWhileDragging(18500, 0.7));
+
+        addSequential(new SetRollers(-0.3));
+        addSequential(new WaitCommand(0.08));
+        addSequential(new SetRollers(0));
+        
+        addSequential(new FarShot());
+        addSequential(new WaitCommand(1.8));
+        
         addSequential(new Collect());
-        addSequential(new SetCatcher(true));
-        addSequential(new DriveDistance(-2000));
+        addSequential(new WaitCommand(1));
+        addSequential(new StowWithBall());        
         addSequential(new HoldBall());
-        addSequential(new SetCatcher(false));
-        addSequential(new DriveDistance(6800));
-        addSequential(new CloseShot());
+        addSequential(new WaitCommand(0.5));
+        addSequential(new FarShot());
+        addSequential(new MoveArm(false));
         
         /*
         

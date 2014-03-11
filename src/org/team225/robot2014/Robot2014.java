@@ -9,6 +9,7 @@ import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
 import org.team225.robot2014.commands.autonomous.TwoBall;
+import org.team225.robot2014.commands.autonomous.TwoBallDrag;
 
 public class Robot2014 extends IterativeRobot {
     
@@ -16,7 +17,7 @@ public class Robot2014 extends IterativeRobot {
     AutonomousWrapper autonomousOptions[] = {
         new AutonomousWrapper(OneBallHotGoal.class, "One Ball Hot Goal", true),
         new AutonomousWrapper(OneBall.class, "One Ball Any Goal", false),
-        new AutonomousWrapper(TwoBall.class, "Two Ball Any Goal", false),
+        new AutonomousWrapper(TwoBallDrag.class, "Two Ball Any Goal", false),
     };
     
     Command autonomousCommand = null;
@@ -77,7 +78,7 @@ public class Robot2014 extends IterativeRobot {
     public void disabledPeriodic()
     {
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
-        System.out.println(CommandBase.intake.getArmPot());
+        System.out.println(CommandBase.intake.isDraggingBall());
         if ( OI.driver.getRawButton(2) && selectedAutonomous < autonomousOptions.length-1 )
         {
             dsLCD.clear();
