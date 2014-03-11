@@ -10,6 +10,7 @@ import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
 import org.team225.robot2014.commands.autonomous.TwoBall;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
+import org.team225.robot2014.coprocessors.ArduinoCommunications;
 
 public class Robot2014 extends IterativeRobot {
     
@@ -34,6 +35,7 @@ public class Robot2014 extends IterativeRobot {
 
     public void autonomousInit()
     {
+        CommandBase.arduComm.set(ArduinoCommunications.IDLE);
         CommandBase.catapult.setLock(false);
         autonomousCommand = autonomousOptions[selectedAutonomous].start();
     }
@@ -47,17 +49,20 @@ public class Robot2014 extends IterativeRobot {
 
     public void teleopInit()
     {
+        CommandBase.arduComm.set(ArduinoCommunications.IDLE);
         CommandBase.catapult.setLock(false);
         CommandBase.catapult.setPressurized(false);
         if ( autonomousCommand != null )
             autonomousCommand.cancel();
     }
     
+    
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        OI.poll();
     }
     
     /**
@@ -68,11 +73,12 @@ public class Robot2014 extends IterativeRobot {
     }
     
     public void disabledInit()
-    {
+    {        
         CommandBase.drivetrain.resetDistance();
         CommandBase.drivetrain.resetAngle();
         
         safeSubsystem(CommandBase.catapult);
+        CommandBase.arduComm.set(ArduinoCommunications.OFF);
     }
     
     public void disabledPeriodic()

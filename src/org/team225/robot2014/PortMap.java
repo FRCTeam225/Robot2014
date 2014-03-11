@@ -45,6 +45,9 @@ public class PortMap {
     
     public static final int COLLECTOR_DRAG_SENSOR = 7; // Digital
     
+    public static final int LIGHTS_STATE_PIN_1 = 8;
+    public static final int LIGHTS_STATE_PIN_2 = 9;
+    
     public static final int COLLECTOR_ANGLE_POT = 2;
     
 }

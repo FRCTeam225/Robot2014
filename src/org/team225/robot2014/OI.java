@@ -22,6 +22,7 @@ import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.Pass;
 import org.team225.robot2014.commands.intake.SetRollers;
 import org.team225.robot2014.commands.intake.StowWithBall;
+import org.team225.robot2014.coprocessors.ArduinoCommunications;
 
 /**
  *
@@ -61,7 +62,21 @@ public class OI {
         tmp = new AxisButton(operator, 2, 0.5);
         tmp.whenPressed(new SetRollers(true, true, true));
         tmp.whenReleased(new SetRollers(false));
-        
-        
+    }
+    
+    static boolean notifyWasPressed = false;
+    
+    public static void poll()
+    {
+        if ( driver.getRawButton(1) )
+        {
+            CommandBase.arduComm.set(ArduinoCommunications.NOTIFY);
+            notifyWasPressed = true;
+        }
+        else if ( notifyWasPressed )
+        {
+            CommandBase.arduComm.set(ArduinoCommunications.IDLE);
+            notifyWasPressed = false;
+        }
     }
 }

@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import org.team225.robot2014.picomm.ThreadedPiCommunications;
+import org.team225.robot2014.coprocessors.ArduinoCommunications;
+import org.team225.robot2014.coprocessors.ThreadedPiCommunications;
 import org.team225.robot2014.subsystems.Catapult;
 import org.team225.robot2014.subsystems.Catcher;
 import org.team225.robot2014.subsystems.Compressor;
@@ -30,6 +31,7 @@ public abstract class CommandBase extends Command {
     public static Compressor compressor;
     
     public static ThreadedPiCommunications piComm;
+    public static ArduinoCommunications arduComm;
     
     public static Timer matchTimer;
     
@@ -42,6 +44,7 @@ public abstract class CommandBase extends Command {
         catcher = new Catcher();
         
         piComm = new ThreadedPiCommunications();
+        arduComm = new ArduinoCommunications();
     }
 
     protected void interrupted() {
