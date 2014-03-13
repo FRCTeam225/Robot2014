@@ -34,8 +34,7 @@ public class Constants extends DoubleTable {
         
         put("ARM_DOWN_THRESH", 540);
         
-        put("AUTO_DISTANCE_TO_GOALS", 8500);
-        put("AUTO_DISTANCE_TO_GOALS_2BALL", 5300);
+        put("AUTO_DISTANCE_TO_GOALS", 9250);
     }
     
     public boolean isPracticeBot()

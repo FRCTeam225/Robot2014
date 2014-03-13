@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
-import org.team225.robot2014.commands.autonomous.TwoBall;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
 
 public class Robot2014 extends IterativeRobot {
