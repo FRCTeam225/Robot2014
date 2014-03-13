@@ -17,7 +17,7 @@ public class Launch extends CommandGroup {
     public Launch(boolean latch, boolean bothCylinders, double timeDelay)
     {
         addSequential(new MoveArm(true));
-        addSequential(new WaitCommand(0.5));
+        addSequential(new WaitCommand(0.8));
         if ( latch )
             addSequential(new LockCatapult());
         addSequential(new ReleaseCatapult(bothCylinders, timeDelay));

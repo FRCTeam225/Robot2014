@@ -10,8 +10,8 @@ import org.team225.robot2014.constants.Constants;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.team225.robot2014.commands.catapult.CloseShot;
-import org.team225.robot2014.commands.catapult.FarShot;
+import org.team225.robot2014.commands.catapult.HighPowerShot;
+import org.team225.robot2014.commands.catapult.LowPowerShot;
 import org.team225.robot2014.commands.catapult.TrussShot;
 import org.team225.robot2014.commands.catcher.Catch;
 import org.team225.robot2014.commands.catcher.OpenCatcher;
@@ -37,8 +37,8 @@ public class OI {
         
         new JoystickButton(operator, 2).whenPressed(new Pass());
         
-        new JoystickButton(operator, 1).whenPressed(new CloseShot());
-        new JoystickButton(operator, 4).whenPressed(new FarShot());
+        new JoystickButton(operator, 1).whenPressed(new HighPowerShot());
+        new JoystickButton(operator, 4).whenPressed(new LowPowerShot());
         
         new JoystickButton(operator, 3).whenPressed(new TrussShot());
         new JoystickButton(operator, 9).whenPressed(new MoveArm(false));

@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author Andrew
  */
-public class SuperShot extends CommandGroup {
-    public SuperShot()
+public class HighPowerShot extends CommandGroup {
+    public HighPowerShot()
     {
         addSequential(new Launch(true, true, 0.5));
     }

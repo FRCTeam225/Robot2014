@@ -6,18 +6,11 @@ package org.team225.robot2014.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
-import org.team225.robot2014.commands.catapult.CloseShot;
-import org.team225.robot2014.constants.Constants;
-import org.team225.robot2014.commands.catapult.FarShot;
-import org.team225.robot2014.commands.catapult.Launch;
-import org.team225.robot2014.commands.catapult.SuperShot;
+import org.team225.robot2014.commands.catapult.HighPowerShot;
 import org.team225.robot2014.commands.catcher.SetCatcher;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.intake.Collect;
 import org.team225.robot2014.commands.intake.HoldBall;
-import org.team225.robot2014.commands.intake.MoveArm;
-import org.team225.robot2014.commands.intake.SetRollers;
-import org.team225.robot2014.commands.intake.StowWithBall;
 
 /**
  *
@@ -28,7 +21,7 @@ public class TwoBall extends CommandGroup {
     {
         addSequential(new HoldBall());
         addSequential(new DriveDistance(6640));
-        addSequential(new CloseShot());
+        addSequential(new HighPowerShot());
         addSequential(new WaitCommand(1));
         addSequential(new Collect());
         addSequential(new SetCatcher(true));
@@ -36,7 +29,7 @@ public class TwoBall extends CommandGroup {
         addSequential(new HoldBall());
         addSequential(new SetCatcher(false));
         addSequential(new DriveDistance(6800));
-        addSequential(new CloseShot());
+        addSequential(new HighPowerShot());
         
         /*
         

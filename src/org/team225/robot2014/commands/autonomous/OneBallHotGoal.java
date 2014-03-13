@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.team225.robot2014.CommandBase;
 import org.team225.robot2014.constants.Constants;
 import org.team225.robot2014.commands.AutonomousWrapper;
-import org.team225.robot2014.commands.catapult.FarShot;
+import org.team225.robot2014.commands.catapult.LowPowerShot;
 import org.team225.robot2014.commands.catapult.Launch;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.intake.MoveArm;
@@ -27,7 +27,7 @@ public class OneBallHotGoal extends CommandGroup {
         if ( !AutonomousWrapper.startingGoalIsHot )
             addSequential(new WaitCommand(4.0));
         
-        addSequential(new FarShot());
+        addSequential(new LowPowerShot());
         addSequential(new WaitCommand(2.0));
         addSequential(new MoveArm(false));
     }

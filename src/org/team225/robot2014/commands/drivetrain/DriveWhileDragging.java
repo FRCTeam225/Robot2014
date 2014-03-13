@@ -31,7 +31,7 @@ public class DriveWhileDragging extends DriveDistance {
     {
         super.execute();
         if ( !intake.isDraggingBall() )
-            intake.setRoller(true, false);
+            intake.setRoller(true, false, true);
         else
             intake.setRoller(false, false);
     }

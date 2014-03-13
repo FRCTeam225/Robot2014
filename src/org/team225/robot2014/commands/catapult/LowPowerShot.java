@@ -10,9 +10,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author Andrew
  */
-public class CloseShot extends CommandGroup {
-    public CloseShot()
+public class LowPowerShot extends CommandGroup {
+    public LowPowerShot()
     {
-        addSequential(new Launch(true, true, 0.255));
+        //addSequential(new Launch(true, true, 0.180));
+        addSequential(new Launch(true, true, 0.225));
     }
 }

@@ -78,7 +78,7 @@ public class Robot2014 extends IterativeRobot {
     public void disabledPeriodic()
     {
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
-        System.out.println(CommandBase.intake.isDraggingBall());
+        System.out.println(CommandBase.intake.hasBall());
         if ( OI.driver.getRawButton(2) && selectedAutonomous < autonomousOptions.length-1 )
         {
             dsLCD.clear();
