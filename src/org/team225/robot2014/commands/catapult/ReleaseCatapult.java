@@ -6,9 +6,6 @@
 
 package org.team225.robot2014.commands.catapult;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import org.team225.robot2014.CommandBase;
-
 /**
  *
  * @author KageRa

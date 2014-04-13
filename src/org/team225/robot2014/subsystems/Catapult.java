@@ -4,11 +4,9 @@
  */
 package org.team225.robot2014.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Solenoid;
-import org.team225.robot2014.OI;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.PortMap;
 
 /**

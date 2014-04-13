@@ -5,11 +5,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
-import org.team225.robot2014.commands.autonomous.PIDTest;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
 

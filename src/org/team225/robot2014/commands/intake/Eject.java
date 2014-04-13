@@ -5,7 +5,6 @@
 package org.team225.robot2014.commands.intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.team225.robot2014.constants.Constants;
 
 /**
  *

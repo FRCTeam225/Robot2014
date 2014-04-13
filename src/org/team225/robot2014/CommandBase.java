@@ -4,10 +4,8 @@
  */
 package org.team225.robot2014;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.team225.robot2014.picomm.ThreadedPiCommunications;
 import org.team225.robot2014.subsystems.Catapult;

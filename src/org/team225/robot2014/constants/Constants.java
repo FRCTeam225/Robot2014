@@ -6,7 +6,6 @@ package org.team225.robot2014.constants;
 
 import com.sun.squawk.microedition.io.FileConnection;
 import java.io.IOException;
-import java.util.Hashtable;
 import javax.microedition.io.Connector;
 
 /**

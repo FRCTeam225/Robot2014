@@ -6,16 +6,12 @@ package org.team225.robot2014.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.team225.robot2014.constants.Constants;
 import org.team225.robot2014.PortMap;
-import org.team225.robot2014.commands.intake.HoldBall;
+import org.team225.robot2014.constants.Constants;
 
 /**
  *

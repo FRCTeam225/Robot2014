@@ -4,8 +4,6 @@
  */
 package org.team225.robot2014.commands.autonomous;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import org.team225.robot2014.CommandBase;
 import org.team225.robot2014.commands.AutonomousWrapper;
 

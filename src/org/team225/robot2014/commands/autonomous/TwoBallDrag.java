@@ -10,17 +10,11 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.team225.robot2014.CommandBase;
 import org.team225.robot2014.commands.catapult.HighPowerShot;
 import org.team225.robot2014.commands.catapult.LowPowerShot;
-import org.team225.robot2014.commands.catcher.SetCatcher;
 import org.team225.robot2014.commands.catcher.WaitForBall;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
 import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
-import org.team225.robot2014.commands.intake.Collect;
-import org.team225.robot2014.commands.intake.HoldBall;
 import org.team225.robot2014.commands.intake.MoveArm;
-import org.team225.robot2014.commands.intake.SetRollers;
-import org.team225.robot2014.commands.intake.StowWithBall;
-import org.team225.robot2014.constants.Constants;
 
 /**
  *
