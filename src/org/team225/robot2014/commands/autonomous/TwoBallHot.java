@@ -8,39 +8,42 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.team225.robot2014.CommandBase;
+import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.catapult.HighPowerShot;
-import org.team225.robot2014.commands.catapult.LowPowerShot;
-import org.team225.robot2014.commands.catcher.SetCatcher;
+import org.team225.robot2014.commands.catapult.ResetCatapult;
 import org.team225.robot2014.commands.catcher.WaitForBall;
+import org.team225.robot2014.commands.drivetrain.DriveArc;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
 import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
-import org.team225.robot2014.commands.intake.Collect;
-import org.team225.robot2014.commands.intake.HoldBall;
+import org.team225.robot2014.commands.drivetrain.ResetDistance;
+import org.team225.robot2014.commands.drivetrain.TurnAndFire;
+import org.team225.robot2014.commands.drivetrain.TurnTo;
 import org.team225.robot2014.commands.intake.MoveArm;
-import org.team225.robot2014.commands.intake.SetRollers;
-import org.team225.robot2014.commands.intake.StowWithBall;
-import org.team225.robot2014.constants.Constants;
 
 /**
  *
  * @author Andrew
  */
-public class TwoBallDrag extends CommandGroup {
+public class TwoBallHot extends CommandGroup {
     Timer t = new Timer();
-    public TwoBallDrag()
-    {  
-        addSequential(new DriveDistance(4000));
-        addSequential(new HighPowerShot());
-        addSequential(new WaitCommand(1.4));
-        addSequential(new DriveWhileCollecting(-1000));
+    public TwoBallHot()
+    {
+        addSequential(new DriveDistance(5000));
+        addSequential(new TurnAndFire(AutonomousWrapper.leftIsHot?-10:10));
+        addSequential(new ResetCatapult());
+        addSequential(new TurnTo(0));
+        addSequential(new WaitCommand(0.35));
+
+        addSequential(new DriveWhileCollecting(-1500));
         addSequential(new MoveArm(false));
-        addSequential(new WaitCommand(0.25));
-        addSequential(new DriveWhileHolding(7000));
-        addSequential(new WaitCommand(0.25));
+        addSequential(new WaitCommand(0.5));
+        addSequential(new DriveWhileHolding(5000));
         addSequential(new WaitForBall());
-        addSequential(new LowPowerShot());
+        addSequential(new TurnAndFire(AutonomousWrapper.leftIsHot?10:-10));
+        addSequential(new ResetCatapult());
     }
+    
     
     public void initialize()
     {
@@ -54,6 +57,8 @@ public class TwoBallDrag extends CommandGroup {
         System.out.println("Auto ended at "+t.get());
         CommandBase.intake.setAngle(false);
         CommandBase.intake.setRoller(0);
+        CommandBase.catapult.setLock(false);
+        CommandBase.catapult.setPressurized(false);
     }
     
     
@@ -63,6 +68,8 @@ public class TwoBallDrag extends CommandGroup {
         System.out.println("Auto ended at "+t.get());
         CommandBase.intake.setAngle(false);
         CommandBase.intake.setRoller(0);
+        CommandBase.catapult.setLock(false);
+        CommandBase.catapult.setPressurized(false);
     }
     
 }

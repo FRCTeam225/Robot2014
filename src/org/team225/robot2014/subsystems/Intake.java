@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -24,17 +25,20 @@ public class Intake extends Subsystem {
 
     Talon roller;
     Solenoid angle;
+    Relay fullDeploy;
     AnalogChannel anglePot;
     DigitalInput ballSensor;
-    DigitalInput dragSensor;
     
     public Intake()
     {
         roller = new Talon(PortMap.COLLECTOR_ROLLER);
+        
         angle = new Solenoid(PortMap.COLLECTOR_ANGLE);
+        fullDeploy = new Relay(PortMap.COLLECTOR_ANGLE_FULL);
+        
+        
         anglePot = new AnalogChannel(PortMap.COLLECTOR_ANGLE_POT);
         ballSensor = new DigitalInput(PortMap.COLLECTOR_BALL_SENSOR);
-        dragSensor = new DigitalInput(PortMap.COLLECTOR_DRAG_SENSOR);
     }
     
     public boolean isDown()
@@ -47,19 +51,20 @@ public class Intake extends Subsystem {
         return angle.get();
     }
     
-    public void setAngle(boolean down)
+    public void setAngle(boolean firstStage, boolean secondStage)
     {
-        angle.set(down);
+        angle.set(firstStage);
+        fullDeploy.set((secondStage?Relay.Value.kForward:Relay.Value.kOff));
+    }
+    
+    public void setAngle(boolean state)
+    {
+        setAngle(state, state);
     }
     
     public boolean hasBall()
     {
         return !ballSensor.get();
-    }
-    
-    public boolean isDraggingBall()
-    {
-        return dragSensor.get();
     }
     
     public void setRoller(double speed)
@@ -79,14 +84,14 @@ public class Intake extends Subsystem {
             if ( reverse )
             {
                 if ( slow )
-                    roller.set(-0.5);
+                    roller.set(-0.8);
                 else
                     roller.set(-1);
             }
             else
             {
                 if ( slow )
-                    roller.set(0.7);
+                    roller.set(0.85);
                 else
                     roller.set(1);
             }

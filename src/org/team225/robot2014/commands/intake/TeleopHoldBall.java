@@ -10,31 +10,30 @@ import org.team225.robot2014.CommandBase;
  *
  * @author Andrew
  */
-public class DragBall extends CommandBase {
+public class TeleopHoldBall extends CommandBase {
 
-    public DragBall()
+    public TeleopHoldBall()
     {
         requires(intake);
     }
     
     protected void initialize() {
-        intake.setAngle(true);
+        intake.setAngle(false);
     }
 
     protected void execute() {
-        if ( !intake.isDraggingBall() )
-            intake.setRoller(true, false);
-        else
-            intake.setRoller(false, false);
+            if ( !intake.hasBall() )
+                intake.setRoller(-0.5);
+            else
+                intake.setRoller(false, false);
     }
 
     protected boolean isFinished() {
-        return false;
+        return intake.hasBall();
     }
 
     protected void end() {
         intake.setRoller(false, false);
-        intake.setAngle(false);
     }
     
 }

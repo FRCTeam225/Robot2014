@@ -17,7 +17,10 @@ public class TurnTo extends SimplePIDCommand {
     {
         super(Constants.getConstants().get("DRIVETRAIN_TURN_P"), Constants.getConstants().get("DRIVETRAIN_TURN_I"), Constants.getConstants().get("DRIVETRAIN_TURN_D"));
         pid.setTarget(angle);
+        pid.okError = 2;
+        setTimeout(1.0);
         requires(drivetrain);
+        
     }
     
     protected double getCurrent() {
@@ -26,6 +29,11 @@ public class TurnTo extends SimplePIDCommand {
 
     protected void setOutput(double value) {
         drivetrain.setMotorSpeeds(value, -value);
+    }
+    
+    public boolean isFinished()
+    {
+        return super.isFinished() || isTimedOut();
     }
     
 }

@@ -5,10 +5,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
+import org.team225.robot2014.commands.autonomous.PIDTest;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
+import org.team225.robot2014.commands.autonomous.TwoBallHot;
 
 public class Robot2014 extends IterativeRobot {
     
@@ -17,6 +20,7 @@ public class Robot2014 extends IterativeRobot {
         new AutonomousWrapper(OneBallHotGoal.class, "One Ball Hot Goal", true),
         new AutonomousWrapper(OneBall.class, "One Ball Any Goal", false),
         new AutonomousWrapper(TwoBallDrag.class, "Two Ball Any Goal", false),
+        new AutonomousWrapper(TwoBallHot.class, "Two Ball Hot Goal", true)
     };
     
     Command autonomousCommand = null;
@@ -33,19 +37,29 @@ public class Robot2014 extends IterativeRobot {
 
     public void autonomousInit()
     {
+        CommandBase.table.putBoolean("isTeleop", false);
+        safeSubsystem(CommandBase.intake);
+        safeSubsystem(CommandBase.catapult);
+        
         CommandBase.catapult.setLock(false);
+        CommandBase.drivetrain.resetAngle();
+        CommandBase.drivetrain.resetDistance();
+        CommandBase.intake.setRoller(0);
+        
         autonomousCommand = autonomousOptions[selectedAutonomous].start();
     }
     
     /**
      * This function is called periodically during autonomous
      */
-    public void autonomousPeriodic() {
+    public void autonomousPeriodic() 
+    {
         Scheduler.getInstance().run();
     }
 
     public void teleopInit()
     {
+        CommandBase.table.putBoolean("isTeleop", true);
         CommandBase.catapult.setLock(false);
         CommandBase.catapult.setPressurized(false);
         if ( autonomousCommand != null )
@@ -68,16 +82,16 @@ public class Robot2014 extends IterativeRobot {
     
     public void disabledInit()
     {
+        CommandBase.table.putBoolean("isTeleop", false);
         CommandBase.drivetrain.resetDistance();
         CommandBase.drivetrain.resetAngle();
-        
         safeSubsystem(CommandBase.catapult);
     }
     
     public void disabledPeriodic()
     {
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
-        System.out.println(CommandBase.intake.hasBall());
+
         if ( OI.driver.getRawButton(2) && selectedAutonomous < autonomousOptions.length-1 )
         {
             dsLCD.clear();
@@ -102,14 +116,24 @@ public class Robot2014 extends IterativeRobot {
             Timer.delay(0.5);
         }
         
+        
         AutonomousWrapper auto = autonomousOptions[selectedAutonomous];
-
-
-        dsLCD.println(DriverStationLCD.Line.kUser1, 1, "--Selected Autonomous--");
+        
+        dsLCD.println(DriverStationLCD.Line.kUser1, 1, "Auto");
         dsLCD.println(DriverStationLCD.Line.kUser2, 1, auto.getDescription());
         dsLCD.println(DriverStationLCD.Line.kUser3, 1, "D: "+CommandBase.drivetrain.getAverageDistance());
         dsLCD.println(DriverStationLCD.Line.kUser4, 1, "A: "+CommandBase.drivetrain.getAngle());
-        dsLCD.println(DriverStationLCD.Line.kUser5, 1, "Hot Goal: " + (CommandBase.piComm.hasTarget()?"yes":"no")+" ");
+        
+        boolean leftHot = CommandBase.table.getBoolean("leftHot", false);
+        boolean rightHot = CommandBase.table.getBoolean("rightHot", false);
+        String hot = "none";
+        if ( leftHot && rightHot )
+            hot = "both";
+        else if ( leftHot )
+            hot = "left";
+        else if ( rightHot )
+            hot = "right";
+        dsLCD.println(DriverStationLCD.Line.kUser5, 1, "Hot: "+hot);
         
         dsLCD.updateLCD();
             

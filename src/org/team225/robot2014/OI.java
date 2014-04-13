@@ -6,22 +6,20 @@
 
 package org.team225.robot2014;
 
-import org.team225.robot2014.constants.Constants;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.team225.robot2014.commands.catapult.HighPowerShot;
+import org.team225.robot2014.commands.catapult.InterruptFireing;
 import org.team225.robot2014.commands.catapult.LowPowerShot;
-import org.team225.robot2014.commands.catapult.TrussShot;
+import org.team225.robot2014.commands.catcher.AutoCatch;
 import org.team225.robot2014.commands.catcher.Catch;
-import org.team225.robot2014.commands.catcher.OpenCatcher;
 import org.team225.robot2014.commands.intake.Collect;
-import org.team225.robot2014.commands.intake.DragBall;
-import org.team225.robot2014.commands.intake.HoldBall;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.Pass;
 import org.team225.robot2014.commands.intake.SetRollers;
 import org.team225.robot2014.commands.intake.StowWithBall;
+import org.team225.robot2014.commands.intake.TeleopHoldBall;
 
 /**
  *
@@ -33,25 +31,22 @@ public class OI {
         
     public static void init()
     {
-        
-        
         new JoystickButton(operator, 2).whenPressed(new Pass());
         
         new JoystickButton(operator, 1).whenPressed(new HighPowerShot());
         new JoystickButton(operator, 4).whenPressed(new LowPowerShot());
         
-        new JoystickButton(operator, 3).whenPressed(new TrussShot());
+        new JoystickButton(operator, 3).whenPressed(new InterruptFireing());
         new JoystickButton(operator, 9).whenPressed(new MoveArm(false));
         
-        new JoystickButton(operator, 7).whenPressed(new OpenCatcher());
+        new JoystickButton(operator, 7).whenPressed(new AutoCatch());
         new JoystickButton(operator, 5).whenPressed(new Catch());
+        
         
         new JoystickButton(operator, 8).whenPressed(new Collect());
         new JoystickButton(operator, 6).whenPressed(new StowWithBall());
         
-        new JoystickButton(operator, 11).whenPressed(new HoldBall());
-        
-        new JoystickButton(driver, 1).whenPressed(new DragBall());
+        new JoystickButton(operator, 11).whenPressed(new TeleopHoldBall());
         
         Button tmp;
         tmp = new AxisButton(operator, 2, -0.5);
@@ -60,8 +55,6 @@ public class OI {
         
         tmp = new AxisButton(operator, 2, 0.5);
         tmp.whenPressed(new SetRollers(true, true, true));
-        tmp.whenReleased(new SetRollers(false));
-        
-        
+        tmp.whenReleased(new SetRollers(false));        
     }
 }

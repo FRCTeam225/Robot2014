@@ -13,7 +13,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LowPowerShot extends CommandGroup {
     public LowPowerShot()
     {
-        //addSequential(new Launch(true, true, 0.180));
-        addSequential(new Launch(true, true, 0.225));
+        this(false);
+    }
+    
+    public LowPowerShot(boolean waitForIntake)
+    {
+        addSequential(new Launch(true, true, 0.225, waitForIntake));
     }
 }

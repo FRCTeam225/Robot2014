@@ -9,14 +9,14 @@ package org.team225.robot2014.commands.drivetrain;
  *
  * @author Andrew
  */
-public class DriveWhileDragging extends DriveDistance {
-    public DriveWhileDragging(double distance, double max)
+public class DriveWhileHolding extends DriveDistance {
+    public DriveWhileHolding(double distance, double max)
     {
         super(distance, max);
         requires(intake);
     }
     
-    public DriveWhileDragging(double distance)
+    public DriveWhileHolding(double distance)
     {
         super(distance, 1);
     }
@@ -24,14 +24,14 @@ public class DriveWhileDragging extends DriveDistance {
     public void initialize()
     {
         super.initialize();
-        intake.setAngle(true);
+        intake.setAngle(false);
     }
     
     public void execute()
     {
         super.execute();
-        if ( !intake.isDraggingBall() )
-            intake.setRoller(true, false, true);
+        if ( !intake.hasBall() )
+            intake.setRoller(true, true, true);
         else
             intake.setRoller(false, false);
     }

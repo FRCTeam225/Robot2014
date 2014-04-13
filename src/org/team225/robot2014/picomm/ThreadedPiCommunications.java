@@ -15,8 +15,8 @@ import javax.microedition.io.StreamConnection;
  *
  * @author Andrew
  */
-public class ThreadedPiCommunications implements Runnable {
-    boolean hasTarget = false;
+public class ThreadedPiCommunications {
+    static boolean hasTarget = false;
     
     public ThreadedPiCommunications()
     {
@@ -24,14 +24,33 @@ public class ThreadedPiCommunications implements Runnable {
     
     public boolean hasTarget()
     {
-        return hasTarget;
+          try {
+            StreamConnection conn = (StreamConnection)Connector.open("socket://10.2.25.22:1337");
+            DataInputStream stream = conn.openDataInputStream();
+            Timer t = new Timer();
+            t.reset();
+            t.start();
+            while ( stream.available() == 0 && t.get() < 2.0 );
+            int b = stream.read();
+            ThreadedPiCommunications.hasTarget = (b != 0);
+            System.out.println("TargetTracker: Got "+hasTarget+" in "+t.get());
+            t.stop();
+            
+            stream.close();
+            conn.close();
+            return ThreadedPiCommunications.hasTarget;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("TargetTracker: Connection failed!");
+        }
+        return true;
     }
     
     public void updateState()
     {
-        new Thread(this).start();
+      //  new Thread(this).start();
     }
-    
+    /*
     public void run()
     {
         try {
@@ -42,14 +61,15 @@ public class ThreadedPiCommunications implements Runnable {
             t.start();
             while ( stream.available() == 0 && t.get() < 2.0 );
             int b = stream.read();
-            hasTarget = (b != 0);
+            ThreadedPiCommunications.hasTarget = (b != 0);
+            System.out.println("TargetTracker: Got "+hasTarget+" in "+t.get());
             t.stop();
             
             stream.close();
             conn.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.out.println("Connection failed!");
+            System.out.println("TargetTracker: Connection failed!");
         }
-    }
+    }*/
 }

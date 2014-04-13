@@ -13,7 +13,7 @@ import org.team225.robot2014.OI;
  */
 public class CheesyDrive extends CommandBase {
     
-    double turn_gain = 1.2;
+    double turn_gain = 1.1;
     double skim_gain = 1; // was 0.4
     double turn_velocity_multiplier_gain = 1.0;
     double quickStopAccumulator = 0;
@@ -56,9 +56,9 @@ public class CheesyDrive extends CommandBase {
 
         drivetrain.setMotorSpeeds(left, right);
         if ( OI.driver.getRawButton(5) )
-            drivetrain.shift(true);
-        else if ( OI.driver.getRawButton(6) )
             drivetrain.shift(false);
+        else if ( OI.driver.getRawButton(7) )
+            drivetrain.shift(true);
         
     }
 

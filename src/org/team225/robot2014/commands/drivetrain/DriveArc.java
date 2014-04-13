@@ -11,12 +11,13 @@ import org.team225.robot2014.commands.SimplePIDCommand;
  *
  * @author Andrew
  */
-public class DriveDistance extends SimplePIDCommand {
+public class DriveArc extends SimplePIDCommand {
     double angle = 0;
     double maxSpeed = 0;
-    public DriveDistance(double distance)
+    double arc = 0;
+    public DriveArc(double distance, double arc)
     {
-        this(distance, 1);
+        this(distance, arc, 1);
         setTimeout(5);
     }
     
@@ -25,22 +26,18 @@ public class DriveDistance extends SimplePIDCommand {
         return super.isFinished() || isTimedOut();
     }
     
-    public DriveDistance(double distance, double maxSpeed)
+    public DriveArc(double distance, double arc, double maxSpeed)
     {
         super(Constants.getConstants().get("DRIVETRAIN_P"), Constants.getConstants().get("DRIVETRAIN_I"), Constants.getConstants().get("DRIVETRAIN_D"));
         requires(drivetrain);
         this.maxSpeed = maxSpeed;
+        this.arc = arc;
         pid.setOutputConstraints(1, -1);
         pid.setTarget(distance);
     }
     
-    public void setTargetAngle(double angle)
-    {
-        this.angle = angle;
-    }
-
     protected double getCurrent() {
-        return drivetrain.getAverageDistance();
+        return drivetrain.getLeftDistance();
     }
 
     protected void setOutput(double value) {
@@ -54,12 +51,13 @@ public class DriveDistance extends SimplePIDCommand {
         double left = value;
         double right = value;
         
-        double offset = Constants.getConstants().get("DRIVETRAIN_DRIVESTRAIGHT_P")*(drivetrain.getAngle()-angle);
+        double offset = arc;
+        if ( value > 0 )
+            arc = -arc;
         offset *= Math.abs(value);
         
         left += offset;
         right -= offset;
-        System.out.println(offset);
         drivetrain.setMotorSpeeds(-left, -right);
     }
 }

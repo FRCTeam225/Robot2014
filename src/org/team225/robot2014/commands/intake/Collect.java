@@ -14,7 +14,7 @@ import org.team225.robot2014.constants.Constants;
 public class Collect extends CommandGroup {
     public Collect()
     {
-        addSequential(new MoveArm(true));
+        addSequential(new MoveArm(MoveArm.ARM_OUT));
         addSequential(new SetRollers(true, false));
     }
 }

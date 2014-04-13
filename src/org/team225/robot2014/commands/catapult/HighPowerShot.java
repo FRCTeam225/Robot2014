@@ -13,6 +13,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class HighPowerShot extends CommandGroup {
     public HighPowerShot()
     {
-        addSequential(new Launch(true, true, 0.5));
+        this(false);
+    }
+    
+    public HighPowerShot(boolean waitForIntake)
+    {
+        addSequential(new Launch(true, true, 0.38, waitForIntake));
     }
 }

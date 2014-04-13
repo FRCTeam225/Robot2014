@@ -15,6 +15,6 @@ public class Eject extends CommandGroup {
     public Eject()
     {
         addSequential(new SetRollers(true, true));
-        addSequential(new MoveArm(false));
+        addSequential(new MoveArm(MoveArm.ARM_IN));
     }
 }

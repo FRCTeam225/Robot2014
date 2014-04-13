@@ -15,6 +15,6 @@ public class StowWithBall extends CommandGroup {
     public StowWithBall()
     {
         addSequential(new SetRollers(false));
-        addSequential(new MoveArm(false));
+        addSequential(new MoveArm(MoveArm.ARM_IN));
     }
 }

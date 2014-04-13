@@ -30,6 +30,7 @@ public abstract class CommandBase extends Command {
     public static Compressor compressor;
     
     public static ThreadedPiCommunications piComm;
+    public static NetworkTable table;
     
     public static Timer matchTimer;
     
@@ -42,6 +43,7 @@ public abstract class CommandBase extends Command {
         catcher = new Catcher();
         
         piComm = new ThreadedPiCommunications();
+        table = NetworkTable.getTable("225");
     }
 
     protected void interrupted() {
