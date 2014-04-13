@@ -12,7 +12,6 @@ import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.catapult.HighPowerShot;
 import org.team225.robot2014.commands.catapult.ResetCatapult;
 import org.team225.robot2014.commands.catcher.WaitForBall;
-import org.team225.robot2014.commands.drivetrain.DriveArc;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
 import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
