@@ -27,7 +27,7 @@ public class WaitForHotGoal extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return isTimedOut() || AutonomousWrapper.leftIsHot;
+        return isTimedOut() || !AutonomousWrapper.leftIsHot;
     }
 
     protected void end() {
