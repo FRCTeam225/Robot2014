@@ -18,6 +18,6 @@ public class LowPowerShot extends CommandGroup {
     
     public LowPowerShot(boolean waitForIntake)
     {
-        addSequential(new Launch(true, true, 0.225, waitForIntake));
+        addSequential(new Launch(true, true, 0.21, waitForIntake));
     }
 }
