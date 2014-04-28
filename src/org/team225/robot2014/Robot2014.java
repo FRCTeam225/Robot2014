@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.commands.AutonomousWrapper;
+import org.team225.robot2014.commands.autonomous.Goalie;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
@@ -15,6 +16,7 @@ public class Robot2014 extends IterativeRobot {
     
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {
+        new AutonomousWrapper(Goalie.class, "Do nothing", false),
         new AutonomousWrapper(OneBallHotGoal.class, "One Ball Hot Goal", true),
         new AutonomousWrapper(OneBall.class, "One Ball Any Goal", false),
         new AutonomousWrapper(TwoBallDrag.class, "Two Ball Any Goal", false),

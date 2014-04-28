@@ -16,7 +16,7 @@ public class WaitForHotGoal extends CommandBase {
     boolean hasHotGoal = false;
     public WaitForHotGoal()
     {
-        setTimeout(2.0);
+        setTimeout(4.0);
     }
     
     
