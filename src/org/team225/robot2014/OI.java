@@ -14,6 +14,8 @@ import org.team225.robot2014.commands.catapult.InterruptFireing;
 import org.team225.robot2014.commands.catapult.LowPowerShot;
 import org.team225.robot2014.commands.catcher.AutoCatch;
 import org.team225.robot2014.commands.catcher.Catch;
+import org.team225.robot2014.commands.catcher.PowerCatch;
+import org.team225.robot2014.commands.catcher.PowerKick;
 import org.team225.robot2014.commands.intake.Collect;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.Pass;
@@ -31,6 +33,8 @@ public class OI {
         
     public static void init()
     {
+       new JoystickButton(driver, 6).whenPressed(new LowPowerShot());
+        
         new JoystickButton(operator, 2).whenPressed(new Pass());
         
         new JoystickButton(operator, 1).whenPressed(new HighPowerShot());
@@ -39,7 +43,7 @@ public class OI {
         new JoystickButton(operator, 3).whenPressed(new InterruptFireing());
         new JoystickButton(operator, 9).whenPressed(new MoveArm(false));
         
-        new JoystickButton(operator, 7).whenPressed(new AutoCatch());
+        new JoystickButton(operator, 7).whenPressed(new PowerCatch());
         new JoystickButton(operator, 5).whenPressed(new Catch());
         
         
@@ -50,11 +54,11 @@ public class OI {
         
         Button tmp;
         tmp = new AxisButton(operator, 2, -0.5);
-        tmp.whenPressed(new SetRollers(true, false, true));
+        tmp.whenPressed(new SetRollers(true, false, false));
         tmp.whenReleased(new SetRollers(false));
         
         tmp = new AxisButton(operator, 2, 0.5);
-        tmp.whenPressed(new SetRollers(true, true, true));
+        tmp.whenPressed(new SetRollers(true, true, false));
         tmp.whenReleased(new SetRollers(false));        
     }
 }

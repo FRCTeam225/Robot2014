@@ -15,6 +15,7 @@ import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
 import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
 import org.team225.robot2014.commands.intake.MoveArm;
+import org.team225.robot2014.commands.intake.SetRollers;
 
 /**
  *
@@ -26,14 +27,17 @@ public class TwoBallDrag extends CommandGroup {
     {  
         addSequential(new DriveDistance(4000));
         addSequential(new HighPowerShot());
+        addSequential(new MoveArm(true));
         addSequential(new WaitCommand(1.4));
-        addSequential(new DriveWhileCollecting(-1000));
+        addSequential(new DriveWhileCollecting(-1830));
+        addSequential(new SetRollers(true, false));
+        addSequential(new WaitCommand(0.5));
         addSequential(new MoveArm(false));
-        addSequential(new WaitCommand(0.25));
-        addSequential(new DriveWhileHolding(7000));
-        addSequential(new WaitCommand(0.25));
+        addSequential(new SetRollers(false, false));
+        addSequential(new WaitCommand(0.3));
+        addSequential(new DriveWhileHolding(4000));
         addSequential(new WaitForBall());
-        addSequential(new LowPowerShot());
+        addSequential(new HighPowerShot());
     }
     
     public void initialize()

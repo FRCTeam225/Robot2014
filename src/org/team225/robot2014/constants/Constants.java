@@ -17,13 +17,13 @@ public class Constants extends DoubleTable {
     public boolean isPracticeBot = false;
     public Constants()
     {
-        put("DRIVETRAIN_P", 0.0008);
+        put("DRIVETRAIN_P", 0.0004);
         put("DRIVETRAIN_I", 0);
         put("DRIVETRAIN_D", 0);
         
-        put("DRIVETRAIN_DRIVESTRAIGHT_P", -0.05);
+        put("DRIVETRAIN_DRIVESTRAIGHT_P", -0.07);
         
-        put("DRIVETRAIN_TURN_P", -0.05);
+        put("DRIVETRAIN_TURN_P", -0.04);
         put("DRIVETRAIN_TURN_I", 0);
         put("DRIVETRAIN_TURN_D", 0);
         

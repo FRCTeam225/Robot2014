@@ -14,8 +14,8 @@ import org.team225.robot2014.OI;
 public class CheesyDrive extends CommandBase {
     
     double turn_gain = 1.1;
-    double skim_gain = 1; // was 0.4
-    double turn_velocity_multiplier_gain = 1.0;
+    double skim_gain = 0.4; // was 0.4
+    double turn_velocity_multiplier_gain = 0.85;
     double quickStopAccumulator = 0;
     
     public CheesyDrive()

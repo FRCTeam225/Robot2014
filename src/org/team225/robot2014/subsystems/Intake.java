@@ -80,14 +80,14 @@ public class Intake extends Subsystem {
             if ( reverse )
             {
                 if ( slow )
-                    roller.set(-0.8);
+                    roller.set(-0.7);
                 else
                     roller.set(-1);
             }
             else
             {
                 if ( slow )
-                    roller.set(0.85);
+                    roller.set(0.7);
                 else
                     roller.set(1);
             }

@@ -22,9 +22,8 @@ public class Launch extends CommandGroup {
     public Launch(boolean latch, boolean bothCylinders, double timeDelay, boolean intakeWait)
     {
         addSequential(new MoveArm(MoveArm.ARM_SHOOTING));
-        if ( intakeWait )
-            addSequential(new WaitCommand(0.4));
-         //addSequential(new WaitCommand(0.1));
+        if ( !latch )
+            addSequential(new WaitCommand(0.2));
         if ( latch )
             addSequential(new LockCatapult());
         addSequential(new ReleaseCatapult(bothCylinders, timeDelay));

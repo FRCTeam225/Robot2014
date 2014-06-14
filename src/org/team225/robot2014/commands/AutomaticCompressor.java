@@ -31,5 +31,4 @@ public class AutomaticCompressor extends CommandBase {
     protected void end() {
         compressor.set(false);
     }
-    
 }

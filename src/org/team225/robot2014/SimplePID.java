@@ -12,7 +12,7 @@ public class SimplePID {
     double kP, kI, kD;
     double error;
     double target; 
-    public double okError = 200;
+    public double okError = 260;
     int loopsStable = 0;
     double errSum = 0;
     double maxInc = 0.01;
