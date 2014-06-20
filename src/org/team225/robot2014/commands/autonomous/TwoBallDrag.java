@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.team225.robot2014.CommandBase;
-import org.team225.robot2014.commands.catapult.HighPowerShot;
-import org.team225.robot2014.commands.catapult.LowPowerShot;
+import org.team225.robot2014.commands.catapult.presets.HighPowerShot;
+import org.team225.robot2014.commands.catapult.presets.LowPowerShot;
 import org.team225.robot2014.commands.catcher.WaitForBall;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
 import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
+import org.team225.robot2014.commands.intake.CollectUntilBall;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.SetRollers;
 
@@ -30,10 +31,9 @@ public class TwoBallDrag extends CommandGroup {
         addSequential(new MoveArm(true));
         addSequential(new WaitCommand(1.4));
         addSequential(new DriveWhileCollecting(-1830));
-        addSequential(new SetRollers(true, false));
-        addSequential(new WaitCommand(0.5));
-        addSequential(new MoveArm(false));
+        addSequential(new CollectUntilBall());
         addSequential(new SetRollers(false, false));
+        addSequential(new MoveArm(false));
         addSequential(new WaitCommand(0.3));
         addSequential(new DriveWhileHolding(4000));
         addSequential(new WaitForBall());

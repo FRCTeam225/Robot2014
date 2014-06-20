@@ -10,6 +10,8 @@ package org.team225.robot2014.commands.catapult;
  */
 public class LockCatapult extends CatapultCommandSafetyWrapper {
 
+    boolean isAlreadyLocked = false;
+    
     public LockCatapult()
     {
         requires(catapult);
@@ -17,6 +19,7 @@ public class LockCatapult extends CatapultCommandSafetyWrapper {
     }
     
     protected void initialize() {
+        isAlreadyLocked = catapult.isLocked();
         catapult.setLock(true);
     }
 
@@ -25,7 +28,7 @@ public class LockCatapult extends CatapultCommandSafetyWrapper {
     }
 
     protected boolean isFinished() {
-        return isTimedOut();
+        return isTimedOut() || isAlreadyLocked;
     }
 
     protected void end() {

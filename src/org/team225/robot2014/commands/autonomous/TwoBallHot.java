@@ -16,6 +16,7 @@ import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
 import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
 import org.team225.robot2014.commands.drivetrain.TurnAndFire;
 import org.team225.robot2014.commands.drivetrain.TurnTo;
+import org.team225.robot2014.commands.intake.CollectUntilBall;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.SetRollers;
 
@@ -35,8 +36,7 @@ public class TwoBallHot extends CommandGroup {
         addSequential(new WaitCommand(0.4));
 
         addSequential(new DriveWhileCollecting(-1650));
-        addSequential(new SetRollers(true, false));
-        addSequential(new WaitCommand(0.3));
+        addSequential(new CollectUntilBall());
         addSequential(new MoveArm(false));
         addSequential(new SetRollers(false, false));
         addSequential(new WaitCommand(0.3));

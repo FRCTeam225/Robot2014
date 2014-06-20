@@ -70,4 +70,9 @@ public class Catapult extends Subsystem {
     {
         lock.set(on);
     }
+    
+    public boolean isLocked()
+    {
+        return lock.get();
+    }
 }
