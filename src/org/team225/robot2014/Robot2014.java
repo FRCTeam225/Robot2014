@@ -12,8 +12,11 @@ import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
 import org.team225.robot2014.commands.autonomous.jukes.OneBallJuke;
+import org.team225.robot2014.constants.ConstantServer;
 
 public class Robot2014 extends IterativeRobot {
+    
+    ConstantServer constantServer = ConstantServer.create(1218);
     
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {

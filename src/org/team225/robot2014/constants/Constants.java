@@ -14,7 +14,6 @@ import javax.microedition.io.Connector;
  */
 public class Constants extends DoubleTable {
     public static Constants constants = null;
-    public boolean isPracticeBot = false;
     public Constants()
     {
         put("DRIVETRAIN_P", 0.0008);
@@ -36,38 +35,12 @@ public class Constants extends DoubleTable {
         put("AUTO_DISTANCE_TO_GOALS", 9250);
     }
     
-    public boolean isPracticeBot()
-    {
-        return isPracticeBot;
-    }
-    
     public static Constants getConstants()
     {
         if ( constants != null )
             return constants;
         
-        
-        boolean isPracticeRobot = false;
-        try {
-            FileConnection fc = (FileConnection)Connector.open("file:///isPracticeRobot");
-            isPracticeRobot = fc.exists();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
-        if ( isPracticeRobot )
-        {
-            constants = new PracticeRobotConstants();
-            
-            System.out.println("I AM A PRACTICE ROBOT!");
-
-        }
-        else
-        {
-            constants = new Constants();
-            System.out.println("I AM A COMPETITION ROBOT");
-        }
-        constants.isPracticeBot = isPracticeRobot;
+        constants = new Constants();
         return constants;
     }
 }
