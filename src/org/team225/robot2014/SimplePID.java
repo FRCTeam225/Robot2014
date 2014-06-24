@@ -12,7 +12,7 @@ public class SimplePID {
     double kP, kI, kD;
     double error;
     double target; 
-    public double okError = 260;
+    public double okError = 100;
     int loopsStable = 0;
     double errSum = 0;
     double maxInc = 0.01;
@@ -55,7 +55,7 @@ public class SimplePID {
         }
         else
             loopsStable = 0;
-        return loopsStable > 5;
+        return loopsStable > 3;
     }
     
     public void setP(double kP)
@@ -126,7 +126,6 @@ public class SimplePID {
             output = maxOutput;
         else if ( output < minOutput )
             output = minOutput;
-        
         return output;
         
     }

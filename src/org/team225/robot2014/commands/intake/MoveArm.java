@@ -18,6 +18,7 @@ public class MoveArm extends CommandBase {
         requires(intake);
         this.position = position;
         this.waitForMove = waitForMove;
+        setTimeout(0.2);
     }
     
     public MoveArm(boolean position)
@@ -25,6 +26,7 @@ public class MoveArm extends CommandBase {
         requires(intake);
         this.position = (position?ARM_OUT:ARM_IN);
         this.waitForMove = true;
+        setTimeout(0);
     }
     
     public MoveArm(int position)
@@ -37,6 +39,8 @@ public class MoveArm extends CommandBase {
     public static int ARM_OUT = 2;
     
     protected void initialize() {
+        if ( intake.isDown() )
+            waitForMove = false;
         if ( position == 0 )
             intake.setAngle(false);
         else if ( position == 1 )
@@ -51,7 +55,7 @@ public class MoveArm extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return true;
+        return isTimedOut() || !waitForMove;
         /*
         if ( !waitForMove )
             return false;

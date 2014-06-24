@@ -17,7 +17,7 @@ import org.team225.robot2014.commands.intake.MoveArm;
 public class OneBallHotGoal extends CommandGroup {
     public OneBallHotGoal()
     {
-        addSequential(new DriveDistance(4500));
+        addSequential(new DriveDistance(5600));
         addSequential(new WaitCommand(0.5));
         addSequential(new WaitForHotGoal());
         addSequential(new HighPowerShot());

@@ -9,6 +9,7 @@ import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.Goalie;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
+import org.team225.robot2014.commands.autonomous.PIDTest;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
 
@@ -16,6 +17,7 @@ public class Robot2014 extends IterativeRobot {
     
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {
+        new AutonomousWrapper(PIDTest.class, "PID Test", false),
         new AutonomousWrapper(Goalie.class, "Do nothing", false),
         new AutonomousWrapper(OneBallHotGoal.class, "One Ball Hot Goal", true),
         new AutonomousWrapper(OneBall.class, "One Ball Any Goal", false),
@@ -55,6 +57,7 @@ public class Robot2014 extends IterativeRobot {
     public void autonomousPeriodic() 
     {
         Scheduler.getInstance().run();
+        System.out.println(CommandBase.drivetrain.getAngle());
     }
 
     public void teleopInit()

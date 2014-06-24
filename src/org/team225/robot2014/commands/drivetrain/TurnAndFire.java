@@ -16,7 +16,7 @@ public class TurnAndFire extends TurnTo {
     {
         super(angle);
         requires(catapult);
-        setTimeout(0.38);
+        setTimeout(0.5);
     }
     
     public void initialize()

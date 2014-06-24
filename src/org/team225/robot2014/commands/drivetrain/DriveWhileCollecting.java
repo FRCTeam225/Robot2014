@@ -36,6 +36,5 @@ public class DriveWhileCollecting extends DriveDistance {
     public void end()
     {
         super.end();
-        intake.setRoller(false, false);
     }
 }

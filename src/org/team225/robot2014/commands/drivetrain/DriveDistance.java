@@ -39,6 +39,7 @@ public class DriveDistance extends SimplePIDCommand {
         pid.setOutputConstraints(1, -1);
         distance = (distance*0.4)/0.555556;
         pid.setTarget(distance);
+        setTimeout(5);
     }
     
     public void setTargetAngle(double angle)

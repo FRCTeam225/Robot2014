@@ -13,7 +13,8 @@ public class InterruptFireing extends CatapultCommandSafetyWrapper {
     public InterruptFireing()
     {
         requires(catapult);
-        setTimeout(0.3);
+        requires(intake);
+        setTimeout(0.2);
     }
     
     protected void initialize() {
@@ -31,6 +32,7 @@ public class InterruptFireing extends CatapultCommandSafetyWrapper {
     protected void end() {
         catapult.setPressurized(false);
         catapult.setLock(false);
+        intake.setAngle(false);
     }
     
 }
