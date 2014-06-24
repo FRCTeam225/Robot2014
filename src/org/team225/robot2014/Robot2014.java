@@ -13,10 +13,11 @@ import org.team225.robot2014.commands.autonomous.TwoBallDrag;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
 import org.team225.robot2014.commands.autonomous.jukes.OneBallJuke;
 import org.team225.robot2014.constants.ConstantServer;
+import org.team225.robot2014.constants.Constants;
 
 public class Robot2014 extends IterativeRobot {
     
-    ConstantServer constantServer = ConstantServer.create(1218);
+    ConstantServer constantServer = ConstantServer.create(225);
     
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {
@@ -39,6 +40,7 @@ public class Robot2014 extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        Constants.getConstants();
         CommandBase.init();
         OI.init();
         System.out.println("ROBOT READY!");

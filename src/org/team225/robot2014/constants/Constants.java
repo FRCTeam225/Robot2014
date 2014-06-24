@@ -4,9 +4,11 @@
  */
 package org.team225.robot2014.constants;
 
+import com.sun.squawk.io.BufferedReader;
 import com.sun.squawk.microedition.io.FileConnection;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import javax.microedition.io.Connector;
@@ -37,27 +39,34 @@ public class Constants extends DoubleTable {
         put("ARM_DOWN_THRESH", 540);
         
         put("AUTO_DISTANCE_TO_GOALS", 9250);
-        
         try {
             FileConnection fc = (FileConnection)Connector.open(PATH);
             if ( fc.exists() )
             {
-                InputStream in = fc.openInputStream();
+                BufferedReader in = new BufferedReader(new InputStreamReader(fc.openInputStream()));
                 boolean valueEntered = false;
                 String key = "";
                 String value = "";
-                while ( in.available() > 0 )
+                while ( true )
                 {
-                    byte[] b = new byte[1];
-                    in.read(b);
+                    char[] b = new char[1];
+                    int c = in.read();
+                    if ( c == -1 )
+                        break;
+                    else
+                        b[0] = (char)c;
+                    
                     if ( b[0] == '\r' ) {} // ignore \r
                     else if ( b[0] == '\n' )
                     {
                         if ( valueEntered )
+                        {
                             put(key, Double.parseDouble(value));
+                        }
                         valueEntered = false;
                         key = "";
                         value = "";
+                        
                     }
                     else if ( b[0] == '=' )
                     {
@@ -86,8 +95,9 @@ public class Constants extends DoubleTable {
         try
         {
             FileConnection fc = (FileConnection)Connector.open(PATH);
-            if ( !fc.exists() )
-                fc.create();
+            if ( fc.exists() )
+                fc.delete();
+            fc.create();
             OutputStream out = fc.openOutputStream();
             Enumeration keys = keys();
             while ( keys.hasMoreElements() )

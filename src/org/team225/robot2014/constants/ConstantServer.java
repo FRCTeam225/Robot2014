@@ -73,7 +73,7 @@ public class ConstantServer implements Runnable {
         public void run() {
             try {
                 Constants constants = Constants.getConstants();
-                respond("# FRC225");
+                respond("# Robot Constants Server");
                 respond("# Set constants by typing CONSTANT=NEWVALUE");
                 respond("# Get constants by typing CONSTANT");
                 while(true)
@@ -97,12 +97,15 @@ public class ConstantServer implements Runnable {
                                else
                                    respond("Write failed");
                            }
-                           if ( valueEntered )
+                           else
                            {
-                               double newDoubleValue = Double.parseDouble(newValue);
-                               constants.put(requestedKey, newDoubleValue);
+                            if ( valueEntered )
+                            {
+                                double newDoubleValue = Double.parseDouble(newValue);
+                                constants.put(requestedKey, newDoubleValue);
+                            }
+                            respond(requestedKey+"="+constants.get(requestedKey));
                            }
-                           respond(requestedKey+"="+constants.get(requestedKey));
                         }
                         else if ( b[0] == '=' )
                             valueEntered = true;
