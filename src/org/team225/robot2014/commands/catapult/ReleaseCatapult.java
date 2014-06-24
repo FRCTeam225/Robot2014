@@ -7,7 +7,6 @@
 package org.team225.robot2014.commands.catapult;
 
 import edu.wpi.first.wpilibj.Timer;
-import org.team225.robot2014.CommandBase;
 
 /**
  *
@@ -36,20 +35,27 @@ public class ReleaseCatapult extends CatapultCommandSafetyWrapper implements Run
         
         public void run()
         {
-            long delayms = (long) Math.floor(delay*1000);
-            Timer t = new Timer();
-            t.reset();
-            t.start();
-            catapult.setPressurized(true, bothCylinders);
-            try {
-                Thread.sleep(delayms);
-            } catch (InterruptedException ex) {
-                System.out.println("CatapultShootingThread: sleep failed!");
-                ex.printStackTrace();
+            if ( !catapult.isPressurized() ) // PrepShot was ran - just release latch
+            {
+                long delayms = (long) Math.floor(delay*1000);
+                Timer t = new Timer();
+                t.reset();
+                t.start();
+                catapult.setPressurized(true, bothCylinders);
+                try {
+                    Thread.sleep(delayms);
+                } catch (InterruptedException ex) {
+                    System.out.println("CatapultShootingThread: sleep failed!");
+                    ex.printStackTrace();
+                }
+                System.out.println("CatapultShootingThread: Finished at "+t.get());
+                System.out.println("CatapultShootingThread: Target is "+delay);
+                System.out.println("CatapultShootingThread: Time Diff is "+Math.abs(t.get()-delay));
             }
-            System.out.println("CatapultShootingThread: Finished at "+t.get());
-            System.out.println("CatapultShootingThread: Target is "+delay);
-            System.out.println("CatapultShootingThread: Time Diff is "+Math.abs(t.get()-delay));
+            else
+            {
+                System.out.println("CatapultShootingThread: Already charged, releasing latch");
+            }
             catapult.setLock(false);
             done = true;
         }
@@ -58,6 +64,7 @@ public class ReleaseCatapult extends CatapultCommandSafetyWrapper implements Run
     CatapultShootingThread shootThread = null;
     public ReleaseCatapult(boolean bothCylinders, double timeDelay){
         requires(catapult);
+        setInterruptible(false);
         this.bothCylinders = bothCylinders;
         this.timeDelay = timeDelay;
     }

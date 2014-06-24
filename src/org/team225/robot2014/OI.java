@@ -13,15 +13,13 @@ import org.team225.robot2014.commands.catapult.InterruptFireing;
 import org.team225.robot2014.commands.catapult.presets.HighPowerShot;
 import org.team225.robot2014.commands.catapult.presets.LowPowerShot;
 import org.team225.robot2014.commands.catapult.presets.PrepFire;
-import org.team225.robot2014.commands.catcher.AutoCatch;
 import org.team225.robot2014.commands.catcher.Catch;
 import org.team225.robot2014.commands.catcher.PowerCatch;
-import org.team225.robot2014.commands.catcher.PowerKick;
 import org.team225.robot2014.commands.intake.Collect;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.Pass;
 import org.team225.robot2014.commands.intake.SetRollers;
-import org.team225.robot2014.commands.intake.StowWithBall;
+import org.team225.robot2014.commands.intake.StowIntake;
 import org.team225.robot2014.commands.intake.TeleopHoldBall;
 
 /**
@@ -55,7 +53,7 @@ public class OI {
         
         
         new JoystickButton(operator, 8).whenPressed(new Collect());
-        new JoystickButton(operator, 6).whenPressed(new StowWithBall());
+        new JoystickButton(operator, 6).whenPressed(new StowIntake());
         
         new JoystickButton(operator, 11).whenPressed(new TeleopHoldBall());
         

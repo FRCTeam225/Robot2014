@@ -7,7 +7,6 @@ package org.team225.robot2014;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import org.team225.robot2014.picomm.ThreadedPiCommunications;
 import org.team225.robot2014.subsystems.Catapult;
 import org.team225.robot2014.subsystems.Catcher;
 import org.team225.robot2014.subsystems.Compressor;
@@ -26,8 +25,7 @@ public abstract class CommandBase extends Command {
     public static Intake intake;
     public static Catcher catcher;
     public static Compressor compressor;
-    
-    public static ThreadedPiCommunications piComm;
+
     public static NetworkTable table;
     
     public static Timer matchTimer;
@@ -39,8 +37,7 @@ public abstract class CommandBase extends Command {
         catapult = new Catapult();
         intake = new Intake();
         catcher = new Catcher();
-        
-        piComm = new ThreadedPiCommunications();
+
         table = NetworkTable.getTable("225");
     }
 

@@ -75,4 +75,9 @@ public class Catapult extends Subsystem {
     {
         return lock.get();
     }
+    
+    public boolean isPressurized()
+    {
+        return (left.get() == DoubleSolenoid.Value.kForward) || (right.get() == DoubleSolenoid.Value.kForward);
+    }
 }

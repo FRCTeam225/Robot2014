@@ -9,20 +9,24 @@ import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.Goalie;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
-import org.team225.robot2014.commands.autonomous.PIDTest;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
+import org.team225.robot2014.commands.autonomous.jukes.OneBallJuke;
 
 public class Robot2014 extends IterativeRobot {
     
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {
-        new AutonomousWrapper(PIDTest.class, "PID Test", false),
         new AutonomousWrapper(Goalie.class, "Do nothing", false),
-        new AutonomousWrapper(OneBallHotGoal.class, "One Ball Hot Goal", true),
-        new AutonomousWrapper(OneBall.class, "One Ball Any Goal", false),
-        new AutonomousWrapper(TwoBallDrag.class, "Two Ball Any Goal", false),
-        new AutonomousWrapper(TwoBallHot.class, "Two Ball Hot Goal", true)
+        new AutonomousWrapper(OneBallHotGoal.class, "1B Hot Goal", true),
+        new AutonomousWrapper(OneBall.class, "1B Any Goal", false),
+        new AutonomousWrapper(TwoBallDrag.class, "2B Any Goal", false),
+        new AutonomousWrapper(TwoBallHot.class, "2B Hot Goal", true),
+        
+        // Jukes
+        new AutonomousWrapper(OneBallJuke.JukeLeftTenDeg.class, "1B Juke left 10d", false),
+        new AutonomousWrapper(OneBallJuke.JukeRightTenDeg.class, "1B Juke right 10d", false),
+        new AutonomousWrapper(OneBallJuke.JukeLeftRightTenDeg.class, "1B Juke +/- 10d", false),
     };
     
     Command autonomousCommand = null;
@@ -112,11 +116,6 @@ public class Robot2014 extends IterativeRobot {
             CommandBase.drivetrain.resetDistance();
             CommandBase.drivetrain.resetGyro();
             dsLCD.clear();
-        }
-        else if ( OI.driver.getRawButton(4) )
-        {
-            CommandBase.piComm.updateState();
-            Timer.delay(0.5);
         }
         
         

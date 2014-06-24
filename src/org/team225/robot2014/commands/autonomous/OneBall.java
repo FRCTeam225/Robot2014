@@ -10,7 +10,7 @@ import org.team225.robot2014.commands.catapult.presets.HighPowerShot;
 import org.team225.robot2014.commands.catapult.presets.LowPowerShot;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.intake.MoveArm;
-import org.team225.robot2014.commands.intake.StowWithBall;
+import org.team225.robot2014.commands.intake.StowIntake;
 import org.team225.robot2014.constants.Constants;
 
 /**
@@ -20,7 +20,7 @@ import org.team225.robot2014.constants.Constants;
 public class OneBall extends CommandGroup {
     public OneBall()
     {
-        addSequential(new StowWithBall());
+        addSequential(new StowIntake());
         addSequential(new DriveDistance(5600));
         addSequential(new HighPowerShot());
         addSequential(new WaitCommand(2.0));

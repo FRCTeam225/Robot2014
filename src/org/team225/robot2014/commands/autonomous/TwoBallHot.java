@@ -13,13 +13,12 @@ import org.team225.robot2014.commands.catapult.ResetCatapult;
 import org.team225.robot2014.commands.catcher.WaitForBall;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
-import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
 import org.team225.robot2014.commands.drivetrain.TurnAndFire;
 import org.team225.robot2014.commands.drivetrain.TurnTo;
-import org.team225.robot2014.commands.intake.CollectUntilBall;
 import org.team225.robot2014.commands.intake.HoldBall;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.SetRollers;
+import org.team225.robot2014.commands.intake.StowIntake;
 
 /**
  *
@@ -38,8 +37,7 @@ public class TwoBallHot extends CommandGroup {
 
         addSequential(new DriveWhileCollecting(-1650));
         addSequential(new WaitCommand(0.35));
-        addSequential(new MoveArm(false));
-        addSequential(new SetRollers(false, false));
+        addSequential(new StowIntake());
         
         addSequential(new DriveDistance(5900));
         addSequential(new HoldBall());
