@@ -6,6 +6,9 @@ package org.team225.robot2014.constants;
 
 import com.sun.squawk.microedition.io.FileConnection;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Enumeration;
 import javax.microedition.io.Connector;
 
 /**
@@ -13,6 +16,7 @@ import javax.microedition.io.Connector;
  * @author Andrew
  */
 public class Constants extends DoubleTable {
+    public static String PATH = "file:///constants";
     public static Constants constants = null;
     public Constants()
     {
@@ -33,6 +37,75 @@ public class Constants extends DoubleTable {
         put("ARM_DOWN_THRESH", 540);
         
         put("AUTO_DISTANCE_TO_GOALS", 9250);
+        
+        try {
+            FileConnection fc = (FileConnection)Connector.open(PATH);
+            if ( fc.exists() )
+            {
+                InputStream in = fc.openInputStream();
+                boolean valueEntered = false;
+                String key = "";
+                String value = "";
+                while ( in.available() > 0 )
+                {
+                    byte[] b = new byte[1];
+                    in.read(b);
+                    if ( b[0] == '\r' ) {} // ignore \r
+                    else if ( b[0] == '\n' )
+                    {
+                        if ( valueEntered )
+                            put(key, Double.parseDouble(value));
+                        valueEntered = false;
+                        key = "";
+                        value = "";
+                    }
+                    else if ( b[0] == '=' )
+                    {
+                        valueEntered = true;
+                    }
+                    else
+                    {
+                        String s = new String(b);
+                        if ( valueEntered )
+                            value += s;
+                        else
+                            key += s;
+                    }
+                }
+            }
+            else
+                System.out.println("No constants file exists!");
+        } catch (IOException ex) {
+            System.out.println("Failed to load constants from file! Hard-coded defaults will be used");
+            ex.printStackTrace();
+        }
+    }
+    
+    public boolean save()
+    {
+        try
+        {
+            FileConnection fc = (FileConnection)Connector.open(PATH);
+            if ( !fc.exists() )
+                fc.create();
+            OutputStream out = fc.openOutputStream();
+            Enumeration keys = keys();
+            while ( keys.hasMoreElements() )
+            {
+                String key = (String)keys.nextElement();
+                double value = get(key);
+                String str = key+"="+value+"\n";
+                out.write(str.getBytes());
+            }
+            out.flush();
+            out.close();
+            fc.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Failed to write constants");
+            e.printStackTrace();
+            return false;
+        }
     }
     
     public static Constants getConstants()

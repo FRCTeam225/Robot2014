@@ -79,7 +79,7 @@ public class OneBallJuke extends CommandGroup {
         }
 
         protected void end() {
-            
+            drivetrain.setMotorSpeeds(0, 0);
         }
     }
     

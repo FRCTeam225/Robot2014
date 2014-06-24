@@ -12,7 +12,6 @@ import java.io.OutputStream;
 import javax.microedition.io.Connector;
 import javax.microedition.io.ServerSocketConnection;
 import javax.microedition.io.SocketConnection;
-import org.team225.robot2014.constants.Constants;
 
 /**
  *
@@ -40,12 +39,16 @@ public class ConstantServer implements Runnable {
     }
 
     public void run() {
-        try {
-            SocketConnection clientSock  = (SocketConnection) sock.acceptAndOpen();
-            new Thread(new Client(clientSock)).start();
-        } catch (IOException ex) {
-            System.out.println("Error accepting client connection");
-            ex.printStackTrace();
+        while ( true )
+        {
+            try {
+                SocketConnection clientSock  = (SocketConnection) sock.acceptAndOpen();
+                new Thread(new Client(clientSock)).start();
+                Thread.sleep(100);
+            } catch (Exception ex) {
+                System.out.println("Error accepting client connection");
+                ex.printStackTrace();
+            }
         }
     }
     
@@ -63,7 +66,7 @@ public class ConstantServer implements Runnable {
         
         public void respond(String str) throws IOException
         {
-            str += "\n";
+            str += "\n\r";
             out.write(str.getBytes());
         }
 
@@ -84,8 +87,16 @@ public class ConstantServer implements Runnable {
                         in.read(b);
                         if ( b[0] == '\r' )
                         {} // disregard \r
-                        if ( b[0] == '\n' )
+                        else if ( b[0] == '\n' )
                         {
+                           if ( requestedKey.equals("save") )
+                           {
+                               respond("Writing constants to file...");
+                               if ( constants.save() )
+                                   respond("Success!");
+                               else
+                                   respond("Write failed");
+                           }
                            if ( valueEntered )
                            {
                                double newDoubleValue = Double.parseDouble(newValue);
@@ -93,7 +104,7 @@ public class ConstantServer implements Runnable {
                            }
                            respond(requestedKey+"="+constants.get(requestedKey));
                         }
-                        else if ( b[0] == ' ' )
+                        else if ( b[0] == '=' )
                             valueEntered = true;
                         else
                         {
