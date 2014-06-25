@@ -48,4 +48,7 @@ public class PortMap {
     
     public static final int COLLECTOR_ANGLE_POT = 2;
     
+    public static final int ANTI_TBONE = 3; // Relay
+    public static final int READY_LIGHT = 4; // Relay
+    
 }

@@ -5,6 +5,7 @@
 package org.team225.robot2014.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -80,14 +81,14 @@ public class Intake extends Subsystem {
             if ( reverse )
             {
                 if ( slow )
-                    roller.set(-0.7);
+                    roller.set(-0.5);
                 else
                     roller.set(-1);
             }
             else
             {
                 if ( slow )
-                    roller.set(0.7);
+                    roller.set(0.5);
                 else
                     roller.set(1);
             }
@@ -103,6 +104,11 @@ public class Intake extends Subsystem {
     public double getArmPot()
     {
         return anglePot.getValue();
+    }
+    
+    public boolean isAbleToFire()
+    {
+        return true; // TODO: Replace this with a check against the pot
     }
 
     protected void initDefaultCommand() {

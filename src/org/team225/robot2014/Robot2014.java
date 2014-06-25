@@ -1,6 +1,7 @@
 package org.team225.robot2014;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -35,6 +36,8 @@ public class Robot2014 extends IterativeRobot {
     
     Command autonomousCommand = null;
     
+    Relay readyLight = new Relay(PortMap.READY_LIGHT);
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -66,7 +69,7 @@ public class Robot2014 extends IterativeRobot {
     public void autonomousPeriodic() 
     {
         Scheduler.getInstance().run();
-        System.out.println(CommandBase.drivetrain.getAngle());
+        updateReadyLight();
     }
 
     public void teleopInit()
@@ -83,6 +86,7 @@ public class Robot2014 extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        updateReadyLight();
     }
     
     /**
@@ -97,11 +101,13 @@ public class Robot2014 extends IterativeRobot {
         CommandBase.table.putBoolean("isTeleop", false);
         CommandBase.drivetrain.resetDistance();
         CommandBase.drivetrain.resetAngle();
+        
         safeSubsystem(CommandBase.catapult);
     }
     
     public void disabledPeriodic()
     {
+        System.out.println(CommandBase.intake.getArmPot());
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
 
         if ( OI.driver.getRawButton(2) && selectedAutonomous < autonomousOptions.length-1 )
@@ -152,6 +158,17 @@ public class Robot2014 extends IterativeRobot {
         Command cmd = s.getCurrentCommand();
         if ( cmd != null )
             cmd.cancel();
+    }
+    
+    
+    
+    public void updateReadyLight()
+    {
+        boolean ready = true;
+        if ( ready ) ready = CommandBase.intake.hasBall();
+        if ( ready && CommandBase.intake.getAngle() ) CommandBase.intake.isAbleToFire();
+        readyLight.set(ready?Relay.Value.kForward:Relay.Value.kOff);
+        
     }
     
 }

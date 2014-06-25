@@ -6,6 +6,7 @@ package org.team225.robot2014.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -27,6 +28,7 @@ public class Drivetrain extends Subsystem {
     Gyro gyro;
     
     Solenoid shifter;
+    Relay antiTbone;
     
     boolean lowGear = false;
     
@@ -48,6 +50,7 @@ public class Drivetrain extends Subsystem {
         rightEncoder.start();
         
         shifter = new Solenoid(PortMap.SHIFT_PISTON);
+        antiTbone = new Relay(PortMap.ANTI_TBONE);
     }
     
     public void resetAngle()
@@ -118,6 +121,16 @@ public class Drivetrain extends Subsystem {
     public boolean isLowGear()
     {
         return lowGear;
+    }
+    
+    public void setAntiTbone(boolean state)
+    {
+        antiTbone.set(state?Relay.Value.kForward:Relay.Value.kOff);
+    }
+    
+    public boolean getAntiTboneDown()
+    {
+        return antiTbone.get()==Relay.Value.kForward;
     }
     
     protected void initDefaultCommand() {

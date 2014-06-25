@@ -60,6 +60,8 @@ public class CheesyDrive extends CommandBase {
         else if ( OI.driver.getRawButton(7) )
             drivetrain.shift(true);
         
+        drivetrain.setAntiTbone(OI.driver.getRawButton(12));
+        
     }
 
     protected boolean isFinished() {
