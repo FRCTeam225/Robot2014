@@ -163,9 +163,21 @@ public class Robot2014 extends IterativeRobot {
     
     public void updateReadyLight()
     {
-        boolean ready = true;
-        if ( ready ) ready = CommandBase.intake.hasBall();
-        if ( ready && CommandBase.intake.getAngle() ) ready = CommandBase.intake.isAbleToFire();
+        boolean ready;
+        String reason = "Ready";
+        
+        ready = CommandBase.intake.hasBall();
+        if ( !ready ) reason = "Ball";
+        
+        if ( ready && CommandBase.intake.getAngle() ) 
+        {
+            ready = CommandBase.intake.isAbleToFire();
+            if ( !ready ) reason = "Intake";
+        }
+        
         readyLight.set(ready?Relay.Value.kForward:Relay.Value.kOff);
+        
+        CommandBase.table.putBoolean("ready", ready);
+        CommandBase.table.putString("readyText", reason);
     }
 }
