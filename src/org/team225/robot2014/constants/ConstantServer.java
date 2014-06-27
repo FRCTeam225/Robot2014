@@ -76,6 +76,7 @@ public class ConstantServer implements Runnable {
                 respond("# Robot Constants Server");
                 respond("# Set constants by typing CONSTANT=NEWVALUE");
                 respond("# Get constants by typing CONSTANT");
+                respond("# Save constants by typing 'save'");
                 while(true)
                 {
                     boolean valueEntered = false;

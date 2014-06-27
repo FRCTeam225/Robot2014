@@ -21,27 +21,27 @@ import org.team225.robot2014.constants.Constants;
  */
 public class OneBallJuke extends CommandGroup {
     
-    public class JukeLeftTenDeg extends CommandGroup
+    public static class JukeLeftTenDeg extends CommandGroup
     {
         public JukeLeftTenDeg()
         {
-            addSequential(new OneBallJuke(10));
+            addSequential(new OneBallJuke(15));
         }
     }
     
-    public class JukeRightTenDeg extends CommandGroup
+    public static class JukeRightTenDeg extends CommandGroup
     {
         public JukeRightTenDeg()
         {
-            addSequential(new OneBallJuke(-10));
+            addSequential(new OneBallJuke(-15));
         }
     }
     
-    public class JukeLeftRightTenDeg extends CommandGroup
+    public static class JukeLeftRightTenDeg extends CommandGroup
     {
         public JukeLeftRightTenDeg()
         {
-            addSequential(new OneBallJuke(10, -10));
+            addSequential(new OneBallJuke(15, -15));
         }
     }
     

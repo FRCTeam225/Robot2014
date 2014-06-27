@@ -7,14 +7,12 @@ package org.team225.robot2014.constants;
 import com.sun.squawk.io.BufferedReader;
 import com.sun.squawk.microedition.io.FileConnection;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import javax.microedition.io.Connector;
 
 /**
- *
  * @author Andrew
  */
 public class Constants extends DoubleTable {
@@ -30,7 +28,7 @@ public class Constants extends DoubleTable {
         
         put("DRIVETRAIN_TURN_P", -0.05);
         put("DRIVETRAIN_TURN_I", 0);
-        put("DRIVETRAIN_TURN_D", 0);
+        put("DRIVETRAIN_TURN_D", -0.095);
         
         put("ARM_P", 0.01);
         put("ARM_I", 0);

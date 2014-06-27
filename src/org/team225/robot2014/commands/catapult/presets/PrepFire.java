@@ -25,6 +25,7 @@ public class PrepFire extends CommandGroup {
     
     protected void end()
     {
-        //CommandBase.catapult.setPressurized(true, true);
+        CommandBase.catapult.setPressurized(true, true);
+        super.end();
     }
 }

@@ -81,14 +81,14 @@ public class Intake extends Subsystem {
             if ( reverse )
             {
                 if ( slow )
-                    roller.set(-0.5);
+                    roller.set(-0.3);
                 else
                     roller.set(-1);
             }
             else
             {
                 if ( slow )
-                    roller.set(0.5);
+                    roller.set(0.3);
                 else
                     roller.set(1);
             }
@@ -108,7 +108,7 @@ public class Intake extends Subsystem {
     
     public boolean isAbleToFire()
     {
-        return true; // TODO: Replace this with a check against the pot
+        return getArmPot() <= 713;
     }
 
     protected void initDefaultCommand() {

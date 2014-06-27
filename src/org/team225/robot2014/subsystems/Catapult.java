@@ -11,6 +11,7 @@ import org.team225.robot2014.PortMap;
 
 /**
  *
+ * @author Andrew
  * @author KageRa
  */
 public class Catapult extends Subsystem {
