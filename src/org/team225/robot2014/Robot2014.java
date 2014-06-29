@@ -10,7 +10,6 @@ import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.Goalie;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
-import org.team225.robot2014.commands.autonomous.PIDTest;
 import org.team225.robot2014.commands.autonomous.TwoBallDrag;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
 import org.team225.robot2014.commands.autonomous.jukes.OneBallJuke;
@@ -108,7 +107,7 @@ public class Robot2014 extends IterativeRobot {
     
     public void disabledPeriodic()
     {
-        System.out.println(CommandBase.intake.getArmPot());
+        updateReadyLight();
         DriverStationLCD dsLCD = DriverStationLCD.getInstance();
 
         if ( OI.driver.getRawButton(2) && selectedAutonomous < autonomousOptions.length-1 )
