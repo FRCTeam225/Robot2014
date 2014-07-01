@@ -6,26 +6,25 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.team225.robot2014.commands.AutonomousWrapper;
 import org.team225.robot2014.commands.autonomous.Goalie;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
-import org.team225.robot2014.commands.autonomous.TwoBallDrag;
+import org.team225.robot2014.commands.autonomous.PIDTest;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
+import org.team225.robot2014.commands.autonomous.TwoBallLinear;
 import org.team225.robot2014.commands.autonomous.jukes.OneBallJuke;
 import org.team225.robot2014.constants.ConstantServer;
 import org.team225.robot2014.constants.Constants;
 
 public class Robot2014 extends IterativeRobot {
     
-    ConstantServer constantServer = ConstantServer.create(225);
-    
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {
+        new AutonomousWrapper(PIDTest.class, "PIDTest", false),
         new AutonomousWrapper(Goalie.class, "Do nothing", false),
         new AutonomousWrapper(OneBallHotGoal.class, "1B Hot Goal", true),
         new AutonomousWrapper(OneBall.class, "1B Any Goal", false),
-        new AutonomousWrapper(TwoBallDrag.class, "2B Any Goal", false),
+        new AutonomousWrapper(TwoBallLinear.class, "2B Any Goal", false),
         new AutonomousWrapper(TwoBallHot.class, "2B Hot Goal", true),
         
         // Jukes
@@ -38,6 +37,8 @@ public class Robot2014 extends IterativeRobot {
     
     Relay readyLight = new Relay(PortMap.READY_LIGHT);
     
+    GPS gps;
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -46,6 +47,7 @@ public class Robot2014 extends IterativeRobot {
         Constants.getConstants();
         CommandBase.init();
         OI.init();
+        gps = new GPS();
         System.out.println("ROBOT READY!");
     }
 
@@ -86,7 +88,11 @@ public class Robot2014 extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        OI.poll();
         updateReadyLight();
+        
+        //gps.update();
+        //System.out.println("("+gps.getX()+","+gps.getY()+")");
     }
     
     /**

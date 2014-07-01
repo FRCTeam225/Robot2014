@@ -24,7 +24,7 @@ public class WaitForBall extends CommandBase {
     }
 
     protected boolean isFinished() {
-        return catcher.hasBall() || intake.hasBall();
+        return catcher.hasBall() || intake.hasBall() || disableSensorWaits;
     }
 
     protected void end() {

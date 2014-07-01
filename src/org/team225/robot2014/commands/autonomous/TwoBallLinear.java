@@ -12,7 +12,7 @@ import org.team225.robot2014.commands.catapult.presets.HighPowerShot;
 import org.team225.robot2014.commands.catcher.WaitForBall;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
 import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
-import org.team225.robot2014.commands.intake.HoldBall;
+import org.team225.robot2014.commands.intake.AutoCenter;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.SetRollers;
 import org.team225.robot2014.commands.intake.StowIntake;
@@ -21,9 +21,9 @@ import org.team225.robot2014.commands.intake.StowIntake;
  *
  * @author Andrew
  */
-public class TwoBallDrag extends CommandGroup {
+public class TwoBallLinear extends CommandGroup {
     Timer t = new Timer();
-    public TwoBallDrag()
+    public TwoBallLinear()
     {  
         addSequential(new DriveDistance(4000));
         addSequential(new HighPowerShot());
@@ -33,7 +33,7 @@ public class TwoBallDrag extends CommandGroup {
         addSequential(new WaitCommand(0.5));
         addSequential(new StowIntake());
         addSequential(new DriveDistance(5000));
-        addSequential(new HoldBall());
+        addSequential(new AutoCenter());
         addSequential(new WaitForBall());
         addSequential(new HighPowerShot());
     }

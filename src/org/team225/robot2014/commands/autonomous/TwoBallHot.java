@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.team225.robot2014.CommandBase;
-import org.team225.robot2014.commands.AutonomousWrapper;
+import org.team225.robot2014.AutonomousWrapper;
 import org.team225.robot2014.commands.catapult.ResetCatapult;
 import org.team225.robot2014.commands.catcher.WaitForBall;
 import org.team225.robot2014.commands.drivetrain.DriveDistance;
@@ -16,7 +16,7 @@ import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
 import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
 import org.team225.robot2014.commands.drivetrain.TurnAndFire;
 import org.team225.robot2014.commands.drivetrain.TurnTo;
-import org.team225.robot2014.commands.intake.HoldBall;
+import org.team225.robot2014.commands.intake.AutoCenter;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.SetRollers;
 import org.team225.robot2014.commands.intake.StowIntake;
@@ -41,7 +41,7 @@ public class TwoBallHot extends CommandGroup {
         addSequential(new StowIntake());
         
         addSequential(new DriveWhileHolding(5900));
-        addSequential(new HoldBall());
+        addSequential(new AutoCenter());
         addSequential(new WaitForBall());
         addSequential(new TurnAndFire(AutonomousWrapper.leftIsHot?13:-13));
         addSequential(new ResetCatapult());

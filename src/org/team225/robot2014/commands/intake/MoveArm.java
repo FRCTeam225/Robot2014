@@ -39,7 +39,7 @@ public class MoveArm extends CommandBase {
     public static int ARM_OUT = 2;
     
     protected void initialize() {
-        if ( intake.isDown() )
+        if ( intake.isAbleToFire() && position == ARM_SHOOTING )
             waitForMove = false;
         if ( position == 0 )
             intake.setAngle(false);

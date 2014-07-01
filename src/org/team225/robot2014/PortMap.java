@@ -40,7 +40,7 @@ public class PortMap {
     public static final int CATCHER_PISTON = 6;//Solenoid
     
     public static final int COLLECTOR_ROLLER = 9;
-    public static final int COLLECTOR_ANGLE = 5; //Solenoid 
+    public static final int COLLECTOR_ANGLE = 3; // Relay 
     public static final int COLLECTOR_ANGLE_FULL = 2; // Relay
     public static final int COLLECTOR_BALL_SENSOR = 6; // Digital
     
@@ -48,7 +48,7 @@ public class PortMap {
     
     public static final int COLLECTOR_ANGLE_POT = 2;
     
-    public static final int ANTI_TBONE = 3; // Relay
+    public static final int ANTI_TBONE = 5; // Solenoid
     public static final int READY_LIGHT = 4; // Relay
     
 }

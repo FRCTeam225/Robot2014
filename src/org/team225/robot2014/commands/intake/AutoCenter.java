@@ -10,9 +10,9 @@ import org.team225.robot2014.CommandBase;
  *
  * @author Andrew
  */
-public class HoldBall extends CommandBase {
+public class AutoCenter extends CommandBase {
 
-    public HoldBall()
+    public AutoCenter()
     {
         requires(intake);
     }
@@ -22,7 +22,7 @@ public class HoldBall extends CommandBase {
     }
 
     protected void execute() {
-            if ( !intake.hasBall() )
+            if ( !intake.hasBall() && !intake.isAbleToFire() )
                 intake.setRoller(true, true, true);
             else
                 intake.setRoller(false, false);

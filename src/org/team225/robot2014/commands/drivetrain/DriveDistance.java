@@ -12,7 +12,7 @@ import org.team225.robot2014.constants.Constants;
  * @author Andrew
  */
 public class DriveDistance extends SimplePIDCommand {
-    double angle = 0;
+    protected double angle = 0;
     double maxSpeed = 0;
     
     public DriveDistance(double distance, double maxSpeed, double angle)

@@ -19,7 +19,6 @@ public class AutoCatch extends CommandGroup {
     
     public AutoCatch()
     {
-        this.initialize();
         addSequential(new SetRollers(false));
         addSequential(new SetCatcher(true));
         addSequential(new MoveArm(MoveArm.ARM_OUT));

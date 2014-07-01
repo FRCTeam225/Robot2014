@@ -7,6 +7,7 @@ package org.team225.robot2014.commands.catapult;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.team225.robot2014.commands.intake.MoveArm;
+import org.team225.robot2014.commands.intake.WaitForIntake;
 
 /**
  *
@@ -28,6 +29,7 @@ public class Launch extends CommandGroup {
             addSequential(new LockCatapult());
         addSequential(new ReleaseCatapult(bothCylinders, timeDelay));
         addSequential(new ResetCatapult());
+        setInterruptible(false);
     }
     
     protected void initialize()
@@ -41,11 +43,6 @@ public class Launch extends CommandGroup {
     {
         System.out.println("Launch ended in "+t.get());
         super.end();
-    }
-    
-    protected void interrupted()
-    {
-        System.out.println("Launch interrupted at "+t.get());
-        super.interrupted();
+        
     }
 }

@@ -5,7 +5,7 @@
 package org.team225.robot2014.commands.autonomous;
 
 import org.team225.robot2014.CommandBase;
-import org.team225.robot2014.commands.AutonomousWrapper;
+import org.team225.robot2014.AutonomousWrapper;
 
 /**
  *

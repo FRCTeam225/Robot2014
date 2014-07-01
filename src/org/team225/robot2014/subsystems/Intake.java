@@ -5,14 +5,11 @@
 package org.team225.robot2014.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
-import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.PortMap;
-import org.team225.robot2014.constants.Constants;
 
 /**
  *
@@ -21,7 +18,7 @@ import org.team225.robot2014.constants.Constants;
 public class Intake extends Subsystem {
 
     Talon roller;
-    Solenoid angle;
+    Relay angle;
     Relay fullDeploy;
     AnalogChannel anglePot;
     DigitalInput ballSensor;
@@ -30,7 +27,7 @@ public class Intake extends Subsystem {
     {
         roller = new Talon(PortMap.COLLECTOR_ROLLER);
         
-        angle = new Solenoid(PortMap.COLLECTOR_ANGLE);
+        angle = new Relay(PortMap.COLLECTOR_ANGLE);
         fullDeploy = new Relay(PortMap.COLLECTOR_ANGLE_FULL);
         
         
@@ -40,17 +37,17 @@ public class Intake extends Subsystem {
     
     public boolean isDown()
     {
-        return anglePot.getValue() > Constants.getConstants().getInt("ARM_DOWN_THRESH");
+        return (angle.get() == Relay.Value.kForward || fullDeploy.get() == Relay.Value.kForward);
     }
     
     public boolean getAngle()
     {
-        return angle.get();
+        return angle.get() == Relay.Value.kForward;
     }
     
     public void setAngle(boolean firstStage, boolean secondStage)
     {
-        angle.set(firstStage);
+        angle.set((firstStage?Relay.Value.kForward:Relay.Value.kOff));
         fullDeploy.set((secondStage?Relay.Value.kForward:Relay.Value.kOff));
     }
     

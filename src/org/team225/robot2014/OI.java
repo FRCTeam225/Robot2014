@@ -17,7 +17,7 @@ import org.team225.robot2014.commands.catcher.AutoCatch;
 import org.team225.robot2014.commands.catcher.Catch;
 import org.team225.robot2014.commands.catcher.PowerCatch;
 import org.team225.robot2014.commands.intake.Collect;
-import org.team225.robot2014.commands.intake.HoldBall;
+import org.team225.robot2014.commands.intake.AutoCenter;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.Pass;
 import org.team225.robot2014.commands.intake.SetRollers;
@@ -34,9 +34,11 @@ public class OI {
     public static void init()
     {
         new JoystickButton(driver, 6).whenPressed(new LowPowerShot());
+        new JoystickButton(driver, 8).whenPressed(new PrepFire());
         
         new JoystickButton(driver, 10).whenPressed(new PrepFire());
         new JoystickButton(driver, 9).whenPressed(new InterruptFireing());
+        
         
         new JoystickButton(operator, 10).whenPressed(new PrepFire());
         new JoystickButton(operator, 9).whenPressed(new InterruptFireing());
@@ -56,7 +58,7 @@ public class OI {
         new JoystickButton(operator, 8).whenPressed(new Collect());
         new JoystickButton(operator, 6).whenPressed(new StowIntake());
         
-        new JoystickButton(operator, 11).whenPressed(new HoldBall());
+        new JoystickButton(operator, 11).whenPressed(new AutoCenter());
         
         Button tmp;
         tmp = new AxisButton(operator, 2, -0.5);
@@ -71,5 +73,11 @@ public class OI {
         new AxisButton(operator, 5, -0.5).whenPressed(new AutoCatch());
         new AxisButton(operator, 6, 0.5).whenPressed(new AutoCatch());
         new AxisButton(operator, 6, -0.5).whenPressed(new AutoCatch());
+    }
+    
+    public static void poll()
+    {
+        if ( driver.getRawButton(1) )
+            CommandBase.disableSensorWaits = true;
     }
 }
