@@ -17,7 +17,7 @@ import org.team225.robot2014.commands.intake.MoveArm;
  */
 public class PrepFire extends CommandGroup {
 
-    private class WatchBall extends AutoCenter {
+    private class WatchBall extends AutoCenter.CenterBall {
         int loopsHas = 0;
         boolean has = true;
         boolean newState = false;
@@ -30,8 +30,7 @@ public class PrepFire extends CommandGroup {
         }
 
         protected void execute() {
-            /*
-            //super.execute();
+            super.execute();
             
             if ( newState == intake.hasBall() )
             {
@@ -43,11 +42,10 @@ public class PrepFire extends CommandGroup {
                 loopsHas = 0;
             }
             
-            if ( (loopsHas > 5 && newState) || (loopsHas > 10 && !newState) )
+            if ( (loopsHas > 5 && newState) || (loopsHas > 15 && !newState) )
                 has = newState;
 
             intake.setAngle(has, false);
-            */
         }
 
         protected boolean isFinished() {
@@ -61,8 +59,17 @@ public class PrepFire extends CommandGroup {
 
     public PrepFire() {
         requires(CommandBase.catapult);
-        addSequential(new MoveArm(MoveArm.ARM_SHOOTING));
+        //addSequential(new MoveArm(MoveArm.ARM_SHOOTING));
+        addSequential(new AutoCenter(true));
         addSequential(new LockCatapult());
+        setInterruptible(false);
+        //addSequential(new WatchBall());
+    }
+    
+    protected void end()
+    {
+        super.end();
+        CommandBase.catapult.setPressurized(true, true);
     }
 
 }

@@ -28,7 +28,7 @@ public class Drivetrain extends Subsystem {
     Gyro gyro;
     
     Solenoid shifter;
-    Solenoid antiTbone;
+    Relay antiTbone;
     
     boolean lowGear = false;
     
@@ -50,7 +50,7 @@ public class Drivetrain extends Subsystem {
         rightEncoder.start();
         
         shifter = new Solenoid(PortMap.SHIFT_PISTON);
-        antiTbone = new Solenoid(PortMap.ANTI_TBONE);
+        antiTbone = new Relay(PortMap.ANTI_TBONE);
     }
     
     public void resetAngle()
@@ -125,12 +125,12 @@ public class Drivetrain extends Subsystem {
     
     public void setAntiTbone(boolean state)
     {
-        antiTbone.set(state);
+        antiTbone.set(state?Relay.Value.kForward:Relay.Value.kOff);
     }
     
     public boolean getAntiTboneDown()
     {
-        return antiTbone.get();
+        return antiTbone.get() == Relay.Value.kForward;
     }
     
     protected void initDefaultCommand() {

@@ -9,25 +9,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.commands.autonomous.Goalie;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
-import org.team225.robot2014.commands.autonomous.PIDTest;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
+import org.team225.robot2014.commands.autonomous.TwoBallHotRight;
 import org.team225.robot2014.commands.autonomous.TwoBallLinear;
 import org.team225.robot2014.commands.autonomous.jukes.OneBallJuke;
-import org.team225.robot2014.constants.ConstantServer;
+import org.team225.robot2014.commands.autonomous.jukes.OneBallJukeArc;
 import org.team225.robot2014.constants.Constants;
 
 public class Robot2014 extends IterativeRobot {
     
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {
-        new AutonomousWrapper(PIDTest.class, "PIDTest", false),
         new AutonomousWrapper(Goalie.class, "Do nothing", false),
         new AutonomousWrapper(OneBallHotGoal.class, "1B Hot Goal", true),
         new AutonomousWrapper(OneBall.class, "1B Any Goal", false),
         new AutonomousWrapper(TwoBallLinear.class, "2B Any Goal", false),
         new AutonomousWrapper(TwoBallHot.class, "2B Hot Goal", true),
+        new AutonomousWrapper(TwoBallHotRight.class, "2B Hot Right", true),
         
         // Jukes
+        new AutonomousWrapper(OneBallJukeArc.class, "1B Juke Arc", true),
         new AutonomousWrapper(OneBallJuke.JukeLeftTenDeg.class, "1B Juke left 10d", false),
         new AutonomousWrapper(OneBallJuke.JukeRightTenDeg.class, "1B Juke right 10d", false),
         new AutonomousWrapper(OneBallJuke.JukeLeftRightTenDeg.class, "1B Juke +/- 10d", false),

@@ -18,7 +18,7 @@ public class MoveArm extends CommandBase {
         requires(intake);
         this.position = position;
         this.waitForMove = waitForMove;
-        setTimeout(0.2);
+        setTimeout(0.25);
     }
     
     public MoveArm(boolean position)

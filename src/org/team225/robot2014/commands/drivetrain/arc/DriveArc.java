@@ -15,7 +15,7 @@ import org.team225.robot2014.commands.drivetrain.DriveDistance;
 public class DriveArc extends DriveDistance {
 
     double stepPerTick = 0;
-    double targetAngle = 0;
+    protected double targetAngle = 0;
     double startingDistance = 0;
     double startingAngle = 0;
     public DriveArc(double distance, double maxSpeed, double angle) {

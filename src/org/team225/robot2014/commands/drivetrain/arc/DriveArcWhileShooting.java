@@ -9,6 +9,7 @@ package org.team225.robot2014.commands.drivetrain.arc;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.team225.robot2014.commands.catapult.LockCatapult;
 import org.team225.robot2014.commands.catapult.ResetCatapult;
+import org.team225.robot2014.commands.intake.MoveArm;
 
 /**
  *
@@ -37,6 +38,7 @@ public class DriveArcWhileShooting extends CommandGroup {
     public DriveArcWhileShooting(double distance, double maxSpeed, double angle)
     {
         addSequential(new LockCatapult());
+        addSequential(new MoveArm(MoveArm.ARM_SHOOTING));
         addSequential(new doDriveArcWhileShooting(distance, maxSpeed, angle));
         addSequential(new ResetCatapult());
     }

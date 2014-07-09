@@ -7,6 +7,7 @@ package org.team225.robot2014.subsystems;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.PortMap;
@@ -18,7 +19,7 @@ import org.team225.robot2014.PortMap;
 public class Intake extends Subsystem {
 
     Talon roller;
-    Relay angle;
+    Solenoid angle;
     Relay fullDeploy;
     AnalogChannel anglePot;
     DigitalInput ballSensor;
@@ -27,7 +28,7 @@ public class Intake extends Subsystem {
     {
         roller = new Talon(PortMap.COLLECTOR_ROLLER);
         
-        angle = new Relay(PortMap.COLLECTOR_ANGLE);
+        angle = new Solenoid(PortMap.COLLECTOR_ANGLE);
         fullDeploy = new Relay(PortMap.COLLECTOR_ANGLE_FULL);
         
         
@@ -37,17 +38,17 @@ public class Intake extends Subsystem {
     
     public boolean isDown()
     {
-        return (angle.get() == Relay.Value.kForward || fullDeploy.get() == Relay.Value.kForward);
+        return (angle.get() || fullDeploy.get() == Relay.Value.kForward);
     }
     
     public boolean getAngle()
     {
-        return angle.get() == Relay.Value.kForward;
+        return angle.get();
     }
     
     public void setAngle(boolean firstStage, boolean secondStage)
     {
-        angle.set((firstStage?Relay.Value.kForward:Relay.Value.kOff));
+        angle.set(firstStage);
         fullDeploy.set((secondStage?Relay.Value.kForward:Relay.Value.kOff));
     }
     
@@ -78,14 +79,14 @@ public class Intake extends Subsystem {
             if ( reverse )
             {
                 if ( slow )
-                    roller.set(-0.3);
+                    roller.set(-0.5);
                 else
                     roller.set(-1);
             }
             else
             {
                 if ( slow )
-                    roller.set(0.3);
+                    roller.set(0.5);
                 else
                     roller.set(1);
             }

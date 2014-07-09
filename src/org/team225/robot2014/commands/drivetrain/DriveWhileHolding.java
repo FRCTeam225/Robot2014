@@ -30,7 +30,6 @@ public class DriveWhileHolding extends DriveDistance {
     public void execute()
     {
         super.execute();
-        System.out.println("HasBall: "+intake.hasBall());
         if ( !intake.hasBall() )
             intake.setRoller(true, true, true);
         else
