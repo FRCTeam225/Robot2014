@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.team225.robot2014.commands.autonomous;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -11,15 +7,11 @@ import org.team225.robot2014.AutonomousWrapper;
 import org.team225.robot2014.CommandBase;
 import org.team225.robot2014.commands.catapult.presets.HighPowerShot;
 import org.team225.robot2014.commands.catcher.WaitForBall;
-import org.team225.robot2014.commands.drivetrain.DriveDistance;
-import org.team225.robot2014.commands.drivetrain.DriveWhileCollecting;
-import org.team225.robot2014.commands.drivetrain.DriveWhileHolding;
-import org.team225.robot2014.commands.drivetrain.TurnTo;
+import org.team225.robot2014.commands.drivetrain.straight.DriveWhileCollecting;
+import org.team225.robot2014.commands.drivetrain.turning.TurnTo;
 import org.team225.robot2014.commands.drivetrain.arc.DriveArc;
 import org.team225.robot2014.commands.drivetrain.arc.DriveArcWhileCollecting;
 import org.team225.robot2014.commands.drivetrain.arc.DriveArcWhileHolding;
-import org.team225.robot2014.commands.drivetrain.arc.DriveArcWhileShooting;
-import org.team225.robot2014.commands.intake.AutoCenter;
 import org.team225.robot2014.commands.intake.MoveArm;
 
 /**

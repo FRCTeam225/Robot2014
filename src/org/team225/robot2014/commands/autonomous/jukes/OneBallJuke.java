@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.team225.robot2014.commands.autonomous.jukes;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -10,9 +6,9 @@ import org.team225.robot2014.CommandBase;
 import org.team225.robot2014.SimplePID;
 import org.team225.robot2014.commands.catapult.presets.HighPowerShot;
 import org.team225.robot2014.commands.catapult.presets.PrepFire;
-import org.team225.robot2014.commands.drivetrain.DriveDistance;
+import org.team225.robot2014.commands.drivetrain.straight.DriveDistance;
 import org.team225.robot2014.commands.intake.MoveArm;
-import org.team225.robot2014.commands.intake.StowIntake;
+import org.team225.robot2014.commands.intake.presets.StowIntake;
 import org.team225.robot2014.constants.Constants;
 
 /**

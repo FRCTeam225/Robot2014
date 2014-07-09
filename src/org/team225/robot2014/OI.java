@@ -1,9 +1,3 @@
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.team225.robot2014;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -18,11 +12,11 @@ import org.team225.robot2014.commands.catcher.AutoCatch;
 import org.team225.robot2014.commands.catcher.Catch;
 import org.team225.robot2014.commands.catcher.PowerCatch;
 import org.team225.robot2014.commands.intake.AutoCenter;
-import org.team225.robot2014.commands.intake.Collect;
-import org.team225.robot2014.commands.intake.Eject;
+import org.team225.robot2014.commands.intake.presets.Collect;
+import org.team225.robot2014.commands.intake.presets.Eject;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.SetRollers;
-import org.team225.robot2014.commands.intake.StowIntake;
+import org.team225.robot2014.commands.intake.presets.StowIntake;
 
 /**
  *

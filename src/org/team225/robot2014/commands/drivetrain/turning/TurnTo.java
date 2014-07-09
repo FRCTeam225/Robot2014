@@ -1,8 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package org.team225.robot2014.commands.drivetrain;
+package org.team225.robot2014.commands.drivetrain.turning;
 
 import org.team225.robot2014.commands.SimplePIDCommand;
 import org.team225.robot2014.constants.Constants;
