@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.team225.robot2014.constants.ConstantServer;
+import org.team225.robot2014.constants.Constants;
 import org.team225.robot2014.subsystems.Catapult;
 import org.team225.robot2014.subsystems.Catcher;
 import org.team225.robot2014.subsystems.Compressor;
@@ -31,9 +32,12 @@ public abstract class CommandBase extends Command {
     
     public static Timer matchTimer;
     
+    public static Constants constants;
+    
     public static void init()
     {
         constantServer = ConstantServer.create(225);
+        constants = Constants.getConstants();
         drivetrain = new Drivetrain();
         compressor = new Compressor();
         catapult = new Catapult();

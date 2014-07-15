@@ -37,6 +37,8 @@ public class Constants extends DoubleTable {
         put("HOLDPOSITION_P", 0.0008);
         put("HOLDPOSITION_TURN_P", 0.0008);
         
+        put("GOALIE_SPEED", 50);
+        
         try {
             FileConnection fc = (FileConnection)Connector.open(PATH);
             if ( fc.exists() )

@@ -48,7 +48,6 @@ public class Goalie extends CommandBase {
     protected boolean shouldFlip()
     {
         return false;
-        //return pos <= angleMap[0][0];
     }
     
     protected double getAngleForLocation(double pos)
