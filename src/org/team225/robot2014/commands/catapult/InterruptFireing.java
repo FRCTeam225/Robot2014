@@ -10,6 +10,7 @@ public class InterruptFireing extends CatapultCommandSafetyWrapper {
     {
         requires(catapult);
         requires(intake);
+        setInterruptible(false);
         setTimeout(0.2);
     }
     

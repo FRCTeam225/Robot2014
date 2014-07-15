@@ -11,11 +11,12 @@ import org.team225.robot2014.commands.catapult.presets.PrepFire;
 import org.team225.robot2014.commands.catcher.AutoCatch;
 import org.team225.robot2014.commands.catcher.Catch;
 import org.team225.robot2014.commands.catcher.PowerCatch;
+import org.team225.robot2014.commands.drivetrain.AntiTBone;
 import org.team225.robot2014.commands.intake.AutoCenter;
-import org.team225.robot2014.commands.intake.presets.Collect;
-import org.team225.robot2014.commands.intake.presets.Eject;
 import org.team225.robot2014.commands.intake.MoveArm;
 import org.team225.robot2014.commands.intake.SetRollers;
+import org.team225.robot2014.commands.intake.presets.Collect;
+import org.team225.robot2014.commands.intake.presets.Eject;
 import org.team225.robot2014.commands.intake.presets.StowIntake;
 
 /**
@@ -33,20 +34,17 @@ public class OI {
         
         new JoystickButton(driver, 10).whenPressed(new PrepFire());
         new JoystickButton(driver, 11).whenPressed(new PrepFire());
+        new JoystickButton(driver, 12).whenPressed(new AntiTBone());
+        
         
         new JoystickButton(driver, 9).whenPressed(new InterruptFireing());
-        
-        
-        new JoystickButton(operator, 10).whenPressed(new PrepFire());
-        new JoystickButton(operator, 9).whenPressed(new InterruptFireing());
         
         new JoystickButton(operator, 2).whenPressed(new Eject());
         new JoystickButton(operator, 3).whenPressed(new HPKick());
         
         new JoystickButton(operator, 1).whenPressed(new HighPowerShot());
         new JoystickButton(operator, 4).whenPressed(new LowPowerShot());
-        
-        new JoystickButton(operator, 3).whenPressed(new InterruptFireing());
+
         new JoystickButton(operator, 9).whenPressed(new MoveArm(false));
         
         new JoystickButton(operator, 7).whenPressed(new PowerCatch());

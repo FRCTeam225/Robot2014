@@ -10,11 +10,11 @@ import org.team225.robot2014.commands.catapult.Launch;
 public class LowPowerShot extends CommandGroup {
     public LowPowerShot()
     {
-        this(false);
+        this(true);
     }
     
     public LowPowerShot(boolean waitForIntake)
     {
-        addSequential(new Launch(true, true, 0.38, waitForIntake));
+        addSequential(new Launch(true, true, 0.225, waitForIntake));
     }
 }

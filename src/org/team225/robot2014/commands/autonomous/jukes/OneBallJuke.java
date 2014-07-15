@@ -21,7 +21,7 @@ public class OneBallJuke extends CommandGroup {
     {
         public JukeLeftTenDeg()
         {
-            addSequential(new OneBallJuke(15));
+            addSequential(new OneBallJuke(-15));
         }
     }
     
@@ -29,7 +29,7 @@ public class OneBallJuke extends CommandGroup {
     {
         public JukeRightTenDeg()
         {
-            addSequential(new OneBallJuke(-15));
+            addSequential(new OneBallJuke(15));
         }
     }
     
@@ -89,6 +89,7 @@ public class OneBallJuke extends CommandGroup {
         addSequential(new StowIntake());
         addSequential(new DriveDistance(5600));
         addSequential(new PrepFire());
+        addSequential(new MoveArm(MoveArm.ARM_SHOOTING));
         addSequential(new JukeOICommand(aAngle, bAngle));
         addSequential(new HighPowerShot());
         addSequential(new WaitCommand(2.0));

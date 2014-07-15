@@ -1,50 +1,21 @@
 package org.team225.robot2014.commands.catcher;
 
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.team225.robot2014.commands.intake.AutoCenter;
 
 /**
  *
  * @author Andrew
  */
-public class PowerCatch extends AutoCenter.CenterBall {
+public class PowerCatch extends CommandGroup {
 
-    boolean alreadyCentered = false;
-    
     public PowerCatch()
     {
-        super();
-        requires(catcher);
+       addSequential(new AutoCatch());
+       addSequential(new WaitCommand(0.3));
+       addSequential(new AutoCenter());
     }
     
-    protected void initialize()
-    {
-        alreadyCentered = intake.hasBall();
-    }
-    
-    protected void execute()
-    {
-        if ( !alreadyCentered )
-        {
-            super.execute();
-            catcher.setDeployed(!catcher.hasBall());
-        }
-        else
-        {
-            catcher.setDeployed(true);
-        }
-    }
-    
-    protected boolean isFinished()
-    {
-        if ( alreadyCentered )
-            return false;
-        else
-            return super.isFinished();
-    }
-    
-    protected void end()
-    {
-        super.end();
-        catcher.setDeployed(false);
-    }
+   
 }

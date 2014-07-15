@@ -17,7 +17,7 @@ public class AutoCatch extends CommandGroup {
     {
         addSequential(new SetRollers(false));
         addSequential(new SetCatcher(true));
-        addSequential(new MoveArm(MoveArm.ARM_OUT));
+        addSequential(new MoveArm(MoveArm.ARM_SHOOTING));
         addSequential(new WaitForBall());
     }
     

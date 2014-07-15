@@ -20,14 +20,14 @@ public class TwoBallLinear extends CommandGroup {
     Timer t = new Timer();
     public TwoBallLinear()
     {  
-        addSequential(new DriveDistance(4000));
+        addSequential(new DriveDistance(5400));
         addSequential(new HighPowerShot());
         addSequential(new MoveArm(true));
         addSequential(new WaitCommand(1.3));
         addSequential(new DriveWhileCollecting(-1830));
         addSequential(new WaitCommand(0.5));
         addSequential(new StowIntake());
-        addSequential(new DriveDistance(5000));
+        addSequential(new DriveDistance(5400));
         addSequential(new AutoCenter());
         addSequential(new WaitForBall());
         addSequential(new HighPowerShot());

@@ -25,13 +25,15 @@ public class Robot2014 extends IterativeRobot {
         new AutonomousWrapper(OneBall.class, "1B Any Goal", false),
         new AutonomousWrapper(TwoBallLinear.class, "2B Any Goal", false),
         new AutonomousWrapper(TwoBallHot.class, "2B Hot Goal", true),
-        new AutonomousWrapper(TwoBallHotRight.class, "2B Hot Right", true),
+        new AutonomousWrapper(TwoBallHotRight.class, "2B Hot RIGHT", false),
         
         // Jukes
         new AutonomousWrapper(OneBallJukeArc.class, "1B Juke Arc", true),
         new AutonomousWrapper(OneBallJuke.JukeLeftTenDeg.class, "1B Juke left 10d", false),
         new AutonomousWrapper(OneBallJuke.JukeRightTenDeg.class, "1B Juke right 10d", false),
         new AutonomousWrapper(OneBallJuke.JukeLeftRightTenDeg.class, "1B Juke +/- 10d", false),
+        
+        new AutonomousWrapper(Goalie.class, "GoalieDrive", false)
     };
     
     Command autonomousCommand = null;
@@ -171,6 +173,9 @@ public class Robot2014 extends IterativeRobot {
     {
         boolean ready;
         String reason = "Ready";
+        
+        if ( CommandBase.catapult.isPressurized() )
+            reason = "!!Pressurized!!";
         
         ready = CommandBase.intake.hasBall();
         if ( !ready ) reason = "Ball";

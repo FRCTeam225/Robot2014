@@ -7,7 +7,6 @@ package org.team225.robot2014;
 public class PortMap {
     public static final int AIR_SWITCH = 1; // Digital
     public static final int COMPRESSOR = 1; // Relay
-    
     public static final int LEFT_DRIVE1 = 1; // PWM
     public static final int LEFT_DRIVE2 = 2; // PWM
     public static final int LEFT_DRIVE3 = 3; // PWM
