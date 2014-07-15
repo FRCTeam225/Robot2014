@@ -10,7 +10,6 @@ import org.team225.robot2014.commands.catapult.presets.LowPowerShot;
 import org.team225.robot2014.commands.catapult.presets.PrepFire;
 import org.team225.robot2014.commands.catcher.AutoCatch;
 import org.team225.robot2014.commands.catcher.Catch;
-import org.team225.robot2014.commands.catcher.PowerCatch;
 import org.team225.robot2014.commands.drivetrain.AntiTBone;
 import org.team225.robot2014.commands.intake.AutoCenter;
 import org.team225.robot2014.commands.intake.MoveArm;
@@ -47,7 +46,7 @@ public class OI {
 
         new JoystickButton(operator, 9).whenPressed(new MoveArm(false));
         
-        new JoystickButton(operator, 7).whenPressed(new PowerCatch());
+        new JoystickButton(operator, 7).whenPressed(new AutoCatch());
         new JoystickButton(operator, 5).whenPressed(new Catch());
         
         

@@ -8,11 +8,16 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class TurnAndFire extends TurnTo {
 
-    public TurnAndFire(double angle)
+    public TurnAndFire(double angle, boolean invertIfHot)
     {
-        super(angle);
+        super(angle, invertIfHot);
         requires(catapult);
         setTimeout(0.5);
+    }
+    
+    public TurnAndFire(double angle)
+    {
+        this(angle, false);
     }
     
     public void initialize()

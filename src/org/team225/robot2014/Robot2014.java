@@ -6,21 +6,28 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.team225.robot2014.commands.DropGoalie;
+import org.team225.robot2014.commands.autonomous.Brick;
+import org.team225.robot2014.commands.autonomous.DriveForward;
 import org.team225.robot2014.commands.autonomous.Goalie;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
+import org.team225.robot2014.commands.autonomous.PinGoalie;
 import org.team225.robot2014.commands.autonomous.TwoBallHot;
 import org.team225.robot2014.commands.autonomous.TwoBallHotRight;
 import org.team225.robot2014.commands.autonomous.TwoBallLinear;
 import org.team225.robot2014.commands.autonomous.jukes.OneBallJuke;
 import org.team225.robot2014.commands.autonomous.jukes.OneBallJukeArc;
+import org.team225.robot2014.commands.autonomous.jukes.TwoBallCenterJuke;
 import org.team225.robot2014.constants.Constants;
 
 public class Robot2014 extends IterativeRobot {
+    public static boolean wasGoalie = false;
     
     int selectedAutonomous = 0;
     AutonomousWrapper autonomousOptions[] = {
-        new AutonomousWrapper(Goalie.class, "Do nothing", false),
+        new AutonomousWrapper(Brick.class, "Do nothing", false),
+        new AutonomousWrapper(DriveForward.class, "Drive Forward", false),
         new AutonomousWrapper(OneBallHotGoal.class, "1B Hot Goal", true),
         new AutonomousWrapper(OneBall.class, "1B Any Goal", false),
         new AutonomousWrapper(TwoBallLinear.class, "2B Any Goal", false),
@@ -28,12 +35,15 @@ public class Robot2014 extends IterativeRobot {
         new AutonomousWrapper(TwoBallHotRight.class, "2B Hot RIGHT", false),
         
         // Jukes
+        new AutonomousWrapper(TwoBallCenterJuke.class, "2B Center Juke", false),
         new AutonomousWrapper(OneBallJukeArc.class, "1B Juke Arc", true),
         new AutonomousWrapper(OneBallJuke.JukeLeftTenDeg.class, "1B Juke left 10d", false),
         new AutonomousWrapper(OneBallJuke.JukeRightTenDeg.class, "1B Juke right 10d", false),
         new AutonomousWrapper(OneBallJuke.JukeLeftRightTenDeg.class, "1B Juke +/- 10d", false),
         
-        new AutonomousWrapper(Goalie.class, "GoalieDrive", false)
+        // Goalie
+        new AutonomousWrapper(Goalie.class, "GoalieDrive", false),
+        new AutonomousWrapper(PinGoalie.class, "PinGoalie", false)
     };
     
     Command autonomousCommand = null;
@@ -84,6 +94,9 @@ public class Robot2014 extends IterativeRobot {
         CommandBase.catapult.setPressurized(false);
         if ( autonomousCommand != null )
             autonomousCommand.cancel();
+        
+        if ( wasGoalie )
+            new DropGoalie().start();
     }
     
     /**

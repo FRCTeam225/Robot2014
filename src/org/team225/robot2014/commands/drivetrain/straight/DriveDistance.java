@@ -11,6 +11,13 @@ public class DriveDistance extends SimplePIDCommand {
     protected double angle = 0;
     double maxSpeed = 0;
     
+    public DriveDistance(double distance, double maxSpeed, double angle, boolean timeout)
+    {
+        this(distance, maxSpeed, angle);
+        if ( timeout )
+            setTimeout(5);
+    }
+    
     public DriveDistance(double distance, double maxSpeed, double angle)
     {
         this(distance, maxSpeed);
