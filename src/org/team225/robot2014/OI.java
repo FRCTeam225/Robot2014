@@ -28,15 +28,23 @@ public class OI {
         
     public static void init()
     {
+        
+        new JoystickButton(driver, 1).whenPressed(new Collect());
+        new JoystickButton(driver, 2).whenPressed(new Eject());
+        new JoystickButton(driver, 3).whenPressed(new Catch());
+        
+        
         new JoystickButton(driver, 6).whenPressed(new LowPowerShot());
         new JoystickButton(driver, 8).whenPressed(new PrepFire());
-        
-        new JoystickButton(driver, 10).whenPressed(new PrepFire());
         new JoystickButton(driver, 11).whenPressed(new PrepFire());
         new JoystickButton(driver, 12).whenPressed(new AntiTBone());
         
-        
         new JoystickButton(driver, 9).whenPressed(new InterruptFireing());
+        
+        new AxisButton(driver, 5, 0.5).whenPressed(new AutoCatch());
+        new AxisButton(driver, 5, -0.5).whenPressed(new AutoCatch());
+        new AxisButton(driver, 6, 0.5).whenPressed(new AutoCatch());
+        new AxisButton(driver, 6, -0.5).whenPressed(new AutoCatch());
         
         new JoystickButton(operator, 2).whenPressed(new Eject());
         new JoystickButton(operator, 3).whenPressed(new HPKick());
@@ -72,7 +80,5 @@ public class OI {
     
     public static void poll()
     {
-        if ( driver.getRawButton(1) )
-            CommandBase.disableSensorWaits = true;
     }
 }

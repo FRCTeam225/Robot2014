@@ -10,8 +10,7 @@ import org.team225.robot2014.commands.DropGoalie;
 import org.team225.robot2014.commands.autonomous.Brick;
 import org.team225.robot2014.commands.autonomous.DriveForward;
 import org.team225.robot2014.commands.autonomous.Goalie;
-import org.team225.robot2014.commands.autonomous.GoalieAutoFlip;
-import org.team225.robot2014.commands.autonomous.GoalieInverse;
+import org.team225.robot2014.commands.autonomous.GoalieFlipped;
 import org.team225.robot2014.commands.autonomous.GoalieStraight;
 import org.team225.robot2014.commands.autonomous.OneBall;
 import org.team225.robot2014.commands.autonomous.OneBallHotGoal;
@@ -28,7 +27,7 @@ public class Robot2014 extends IterativeRobot {
     public static boolean wasGoalie = false;
     
     int selectedAutonomous = 0;
-    AutonomousWrapper autonomousOptions[] = {
+    AutonomousWrapper autonomousOptions[] = {        
         new AutonomousWrapper(Brick.class, "Do nothing", false),
         new AutonomousWrapper(DriveForward.class, "Drive Forward", false),
         new AutonomousWrapper(OneBallHotGoal.class, "1B Hot Goal", true),
@@ -46,9 +45,8 @@ public class Robot2014 extends IterativeRobot {
         
         // Goalie
         new AutonomousWrapper(Goalie.class, "GoalieDrive", false),
-        new AutonomousWrapper(GoalieAutoFlip.class, "Goalie+Flip", false),
+        new AutonomousWrapper(GoalieFlipped.class, "GoalieFlipped", false),
         new AutonomousWrapper(GoalieStraight.class, "GoalieStraight", false),
-        new AutonomousWrapper(GoalieInverse.class, "GoalieInverse", false),
         new AutonomousWrapper(PinGoalie.class, "PinGoalie", false)
     };
     

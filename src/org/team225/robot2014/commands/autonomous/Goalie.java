@@ -9,11 +9,7 @@ import org.team225.robot2014.constants.Constants;
  * @author Andrew
  */
 public class Goalie extends CommandBase {
-    
-    double angleMap[][] = { // position, angle
-        { 10000, 20 },
-        { 20000, 30 },
-    };          
+          
     
     public Goalie()
     {
@@ -21,6 +17,7 @@ public class Goalie extends CommandBase {
         requires(intake);
         setTimeout(10);
     }
+    
     
     
     /*
@@ -42,29 +39,20 @@ public class Goalie extends CommandBase {
             }
         }
         return 0;
-    }
-    */
+    }*/
+    
     
     protected boolean shouldFlip()
     {
         return false;
     }
     
+    
     protected double getAngleForLocation(double pos)
     {
-        double angle = 0;
-        for ( int i = 0; i < angleMap.length; i++ )
-        {
-            if ( (i == 0 && pos <= angleMap[i][0]) || (i == (angleMap.length-1) && pos >= angleMap[i][0]) ) // we are behind/infront the first/last waypoint
-            {
-                return angleMap[i][1];
-            }
-            else if ( angleMap[i][0] <= pos )
-            {
-                angle = angleMap[i][1];
-            }
-        }
-        return angle;
+        if ( pos < constants.get("GOALIE_PEEK_POS") )
+            return constants.get("GOALIE_PEEK_ANGLE");
+        return 0;
     }
 
     protected void initialize() {
@@ -86,6 +74,13 @@ public class Goalie extends CommandBase {
             angleError = (drivetrain.getAngle()-angle);
             if ( Math.abs(angleError) > 10 )
                 left = right = false;
+            else
+            {
+                System.out.println("Flipped");
+                boolean tmp = right;
+                right = left;
+                left = tmp;
+            }
         }
         else
         {
@@ -93,18 +88,24 @@ public class Goalie extends CommandBase {
             angleError = (drivetrain.getAngle()-angle);
         }
         
-        double speed = 50;
-        double offset = Constants.getConstants().get("DRIVETRAIN_DRIVESTRAIGHT_P")*angleError;
-        offset *= speed;
+        double speed = constants.get("GOALIE_SPEED");
+     
+        if ( !left && right )
+            speed = -speed;
+        else if ( left && right || !left && !right  )
+            speed = 0;
+
+        //if ( drivetrain.getAverageDistance() <= constants.get("GOALIE_LOW_LIMIT") && right )
+        //    speed = 0;
+        
+        double offset = -Constants.getConstants().get("HOLDPOSITION_TURN_P")*angleError;
+        if ( Math.abs(speed) > 0 )
+            offset *= Math.abs(speed);
         double lspeed = speed+offset;
         double rspeed = speed-offset;
-        
-        if ( left && !right )
-            drivetrain.setMotorSpeeds(lspeed, rspeed);
-        else if ( !left && right )
-            drivetrain.setMotorSpeeds(-lspeed, -rspeed);
-        else
-            drivetrain.setMotorSpeeds(0, 0);
+        System.out.println(angle+" for "+drivetrain.getAverageDistance());
+
+        drivetrain.setMotorSpeeds(-lspeed, -rspeed);
     }
 
     protected boolean isFinished() {

@@ -20,7 +20,6 @@ public class CheesyDrive extends CommandBase {
     }
     
     protected void initialize() {
-        drivetrain.shift(false);
     }
 
     protected void execute() {
