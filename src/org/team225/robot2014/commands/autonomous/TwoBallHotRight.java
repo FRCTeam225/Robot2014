@@ -3,6 +3,7 @@ package org.team225.robot2014.commands.autonomous;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+import org.team225.robot2014.AutonomousWrapper;
 import org.team225.robot2014.CommandBase;
 import org.team225.robot2014.commands.catapult.presets.HighPowerShot;
 import org.team225.robot2014.commands.catcher.WaitForBall;
@@ -62,10 +63,10 @@ public class TwoBallHotRight extends CommandGroup {
     
     public TwoBallHotRight()
     {
-        //if ( AutonomousWrapper.leftIsHot )
+        if ( AutonomousWrapper.leftIsHot )
           addSequential(new do_LeftHotFirst());
-        //else
-        //addSequential(new do_RightHotFirst());
+        else
+        addSequential(new do_RightHotFirst());
     }
     
         

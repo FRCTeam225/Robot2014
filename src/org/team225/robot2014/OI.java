@@ -64,11 +64,11 @@ public class OI {
         new JoystickButton(operator, 11).whenPressed(new AutoCenter(true));
         
         Button tmp;
-        tmp = new AxisButton(operator, 2, -0.5);
+        tmp = new AxisButton(operator, 4, -0.5);
         tmp.whenPressed(new SetRollers(true, false, false));
         tmp.whenReleased(new SetRollers(false));
         
-        tmp = new AxisButton(operator, 2, 0.5);
+        tmp = new AxisButton(operator, 4, 0.5);
         tmp.whenPressed(new SetRollers(true, true, false));
         tmp.whenReleased(new SetRollers(false));    
         

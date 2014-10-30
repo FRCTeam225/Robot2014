@@ -95,8 +95,8 @@ public class Goalie extends CommandBase {
         else if ( left && right || !left && !right  )
             speed = 0;
 
-        //if ( drivetrain.getAverageDistance() <= constants.get("GOALIE_LOW_LIMIT") && right )
-        //    speed = 0;
+        if ( drivetrain.getAverageDistance() <= constants.get("GOALIE_LOW_LIMIT") && right )
+            speed = 0;
         
         double offset = -Constants.getConstants().get("HOLDPOSITION_TURN_P")*angleError;
         if ( Math.abs(speed) > 0 )

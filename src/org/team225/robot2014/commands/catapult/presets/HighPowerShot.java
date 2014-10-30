@@ -10,7 +10,7 @@ import org.team225.robot2014.commands.catapult.Launch;
 public class HighPowerShot extends CommandGroup {
     public HighPowerShot()
     {
-        this(false);
+        this(true);
     }
     
     public HighPowerShot(boolean waitForIntake)
