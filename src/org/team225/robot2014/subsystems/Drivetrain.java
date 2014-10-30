@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team225.robot2014.PortMap;
 import org.team225.robot2014.commands.drivetrain.CheesyDrive;
@@ -25,6 +26,9 @@ public class Drivetrain extends Subsystem {
     
     Solenoid shifter;
     Relay antiTbone;
+    
+    DigitalOutput shiftLight1;
+    DigitalOutput shiftLight2;
     
     boolean lowGear = false;
     
@@ -47,6 +51,12 @@ public class Drivetrain extends Subsystem {
         
         shifter = new Solenoid(PortMap.SHIFT_PISTON);
         antiTbone = new Relay(PortMap.ANTI_TBONE);
+        
+        shiftLight1 = new DigitalOutput(PortMap.SHIFT_LIGHT1);
+        shiftLight2 = new DigitalOutput(PortMap.SHIFT_LIGHT2);
+        
+        shiftLight1.set(false);
+        shiftLight2.set(false);
     }
     
     public void resetAngle()
@@ -111,6 +121,8 @@ public class Drivetrain extends Subsystem {
     public void shift(boolean lowGear)
     {
         shifter.set(lowGear);
+        shiftLight1.set(lowGear);
+        shiftLight2.set(lowGear);
         this.lowGear = lowGear;
     }
     
